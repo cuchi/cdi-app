@@ -1,0 +1,19 @@
+{
+  "name": "cdi-app",
+  "version": "0.0.1",
+  "description": "E-learning application for differential calculus students",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuchi/cdi-app.git"
+  },
+  "author": "Paulo Henrique Cuchi <paulo.cuchi@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cuchi/cdi-app/issues"
+  },
+  "homepage": "https://github.com/cuchi/cdi-app#readme"
+}
