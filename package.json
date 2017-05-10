@@ -15,5 +15,16 @@
   "bugs": {
     "url": "https://github.com/cuchi/cdi-app/issues"
   },
-  "homepage": "https://github.com/cuchi/cdi-app#readme"
+  "homepage": "https://github.com/cuchi/cdi-app#readme",
+  "dependencies": {
+    "config": "^1.26.1",
+    "express": "^4.15.2",
+    "helmet": "^3.6.0",
+    "morgan": "^1.8.1",
+    "ramda": "^0.23.0",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "mocha": "^3.3.0"
+  }
 }
