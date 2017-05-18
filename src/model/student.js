@@ -5,7 +5,8 @@ const Student = {
     name: requiredString,
     code: requiredString,
     email: requiredString,
-    phone: requiredString
+    phone: requiredString,
+    score: {}
 }
 
 exports.default = mongoose.model('Student', Student)
