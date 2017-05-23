@@ -1,3 +1,4 @@
 const server = require('./src/server');
+const db = require('./src/db');
 
-server.run();
+db.connect().then(() => server.run());

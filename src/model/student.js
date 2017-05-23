@@ -3,10 +3,14 @@ const { requiredString } = require('./utils');
 
 const Student = {
     name: requiredString,
+    password: requiredString,
     code: requiredString,
     email: requiredString,
     phone: requiredString,
-    score: {}
+    score: {
+        type: Number,
+        default: 0
+    }
 }
 
 exports.default = mongoose.model('Student', Student)
