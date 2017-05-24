@@ -1,4 +1,5 @@
 const Student = require('../model/student');
+const { checkPassword } = require('../auth');
 
 function studentLogin(loginInfo) {
     Student.findOne({ email: loginInfo.email })

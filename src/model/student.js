@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { requiredString } = require('./utils');
+const { requiredString } = require('../db');
 
 const Student = {
     name: requiredString,

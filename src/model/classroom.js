@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const R = require('ramda');
-const { requiredString } = require('./utils');
+const { requiredString } = require('../db');
 
 const Classroom = {
     code: requiredString,
