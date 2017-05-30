@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const createStudent = require('./actions/createStudent');
-const login = require('./actions/login');
+const createTeacher = require('./actions/createTeacher');
+const getRanking = require('./actions/getRanking');
 
 const send501 = (req, res) => res.status(501);
 
@@ -9,6 +10,12 @@ function getRouter() {
 
     router.get('/status', (req, res) => {
         res.status(200).send('Everything is fine!');
+    });
+
+    router.post('/teacher', (req, res, next) => {
+        createTeacher(res.body)
+            .then(teacher => res.status(201).send(teacher))
+            .catch(next);
     });
 
     router.post('/student/:token', (req, res, next) => {

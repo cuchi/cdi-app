@@ -2,6 +2,7 @@ const crypto = require('crypto');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const Student = require('./model/student');
+const Teacher = require('./model/teacher');
 const { AuthenticationError } = require('./errors');
 
 function randomSalt() {
@@ -14,8 +15,7 @@ function hash(password, salt) {
 
 function hashPassword(plainPassword) {
     const salt = randomSalt();
-    const hash = hash(plainPassword, salt);
-    return `${salt}%${hash}`;
+    return `${salt}%${hash(plainPassword, salt)}`;
 }
 
 function verifyPassword(hashed, plain) {
