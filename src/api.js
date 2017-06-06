@@ -13,7 +13,7 @@ function getRouter() {
     });
 
     router.post('/teacher', (req, res, next) => {
-        createTeacher(res.body)
+        createTeacher(req.body)
             .then(teacher => res.status(201).send(teacher))
             .catch(next);
     });

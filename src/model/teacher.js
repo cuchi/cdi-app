@@ -9,4 +9,8 @@ const Teacher = new mongoose.Schema({
     phone: requiredString
 });
 
-exports.default = mongoose.model('Teacher', Teacher);
+const indexes = [
+    [{ email: 1 }, { unique: true }]
+];
+
+module.exports = mongoose.model('Teacher', Teacher);

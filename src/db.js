@@ -14,7 +14,10 @@ function connect() {
 
     return mongoose.connect(url)
         .then(() => console.log(`Connected successfuly to ${url}`))
-        .catch(() => console.error(`Failed to connect to ${url}`));
+        .catch(err => {
+            console.error(`Failed to connect to ${url}`);
+            throw err;
+        });
 }
 
 module.exports = { 

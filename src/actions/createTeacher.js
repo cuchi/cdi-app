@@ -1,5 +1,6 @@
 const { merge, pick } = require('ramda');
 const Teacher = require('../model/teacher');
+const { hashPassword } = require('../auth');
 
 module.exports = teacherInfo => {
     const teacher = merge(

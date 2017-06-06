@@ -10,7 +10,8 @@ function randomSalt() {
 }
 
 function hash(password, salt) {
-    return crypto.pbkdf2Sync(password, salt, 10, 256, 'sha256');
+    return crypto.pbkdf2Sync(password, salt, 10, 256, 'sha256')
+        .toString('base64');
 }
 
 function hashPassword(plainPassword) {
@@ -23,7 +24,7 @@ function verifyPassword(hashed, plain) {
     return hashed === hash(plain, salt);
 }
 
-function authenticateModel(Model) {
+function authenticateModel(model) {
     return (email, password, done) => {
         model.findOne({ email })
             .then(when(isNil, fail(new AuthenticationError())))
@@ -34,21 +35,27 @@ function authenticateModel(Model) {
     }
 }
 
-function initialize() {
-    passport.use('local-student', new LocalStrategy(
+const defaultStrategy = model =>
+    new LocalStrategy(
         { usernameField: 'email' },
-        authenticateModel(Student)));
+        authenticateModel(model));
 
-    passport.use('local-teacher', new LocalStrategy(
-        { usernameField: 'email' },
-        authenticateModel(Teacher)));
+function initialize() {
+    passport.use('local-student', defaultStrategy(Student));
+
+    passport.use('local-teacher', defaultStrategy(Teacher));
     
     passport.serializeUser((user, done) => {
-        
+        done(null, { _id: user._id, model: user.constructor.modelName });
     });
 
-    passport.deserializeUser((userId, done) => {
-
+    passport.deserializeUser((user, done) => {
+        const model = user.model === 'Teacher'
+            ? Teacher
+            : Student;
+        
+        model.findById(user._id)
+            .then(user => done(null, user));
     });
 }
 
