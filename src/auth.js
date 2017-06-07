@@ -1,9 +1,11 @@
 const crypto = require('crypto');
 const passport = require('passport');
+const { isNil, when } = require('ramda');
 const LocalStrategy = require('passport-local').Strategy;
 const Student = require('./model/student');
 const Teacher = require('./model/teacher');
 const { AuthenticationError } = require('./errors');
+const { fail } = require('./utils');
 
 function randomSalt() {
     return crypto.randomBytes(16).toString('base64');
@@ -19,15 +21,15 @@ function hashPassword(plainPassword) {
     return `${salt}%${hash(plainPassword, salt)}`;
 }
 
-function verifyPassword(hashed, plain) {
-    const [salt] = hashed.split('%');
+function verifyPassword(fullPassword, plain) {
+    const [salt, hashed] = fullPassword.split('%');
     return hashed === hash(plain, salt);
 }
 
 function authenticateModel(model) {
     return (email, password, done) => {
         model.findOne({ email })
-            .then(when(isNil, fail(new AuthenticationError())))
+            .then(when(isNil, () => fail(new AuthenticationError())))
             .then(user =>
                 verifyPassword(user.password, password)
                     ? done(null, user)
@@ -44,7 +46,7 @@ function initialize() {
     passport.use('local-student', defaultStrategy(Student));
 
     passport.use('local-teacher', defaultStrategy(Teacher));
-    
+
     passport.serializeUser((user, done) => {
         done(null, { _id: user._id, model: user.constructor.modelName });
     });
@@ -53,7 +55,7 @@ function initialize() {
         const model = user.model === 'Teacher'
             ? Teacher
             : Student;
-        
+
         model.findById(user._id)
             .then(user => done(null, user));
     });

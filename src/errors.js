@@ -1,6 +1,16 @@
 
 class NotFoundError extends Error {
-
+    constructor(message) {
+        super(message);
+        this.status = 404;
+    }
 }
 
-module.exports = { NotFoundError };
+class AuthenticationError extends Error {
+    constructor(message) {
+        super(message);
+        this.status = 401;
+    }
+}
+
+module.exports = { NotFoundError, AuthenticationError };

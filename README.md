@@ -9,15 +9,20 @@ e _Desenvolvimento de Aplicações Web_ da UDESC.
     - [x] Questões
     - [x] Respostas
     - [x] Turmas
+- [ ] Terminar de definir a API
 - [ ] Implementar a API
+    - [ ] Restrições por tipo de usuário
     - [x] `GET /status`
-    - [ ] `POST /login`
     - [ ] `POST /logout`
     - [ ] Rotas pra professor
-        - [ ] `POST /teacher`
+        - [x] `POST /teacher/session`
         - [ ] `POST /question`
+        - [ ] `POST /classroom`
+        - [ ] `GET /classrooms`
+        - [ ] `POST /classroom/:classroomId/invitation`
     - [ ] Rotas pra aluno
         - [ ] `POST /student/token`
+        - [x] `POST /student/session`
         - [ ] `GET /me`
         - [ ] `GET /classroom`
         - [ ] `GET /ranking`
