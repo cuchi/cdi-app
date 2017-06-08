@@ -19,6 +19,7 @@
   "dependencies": {
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.2",
+    "chai": "^4.0.2",
     "config": "^1.26.1",
     "express": "^4.15.2",
     "express-session": "^1.15.3",
@@ -28,9 +29,10 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "ramda": "^0.23.0",
+    "superagent": "^3.5.2",
     "winston": "^2.3.1"
   },
   "devDependencies": {
-    "mocha": "^3.3.0"
+    "mocha": "^3.4.2"
   }
 }
