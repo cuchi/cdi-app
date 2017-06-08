@@ -8,5 +8,5 @@ module.exports = teacherInfo => {
         pick(['name', 'code', 'email', 'phone'], teacherInfo),
         { password: hashPassword(teacherInfo.password) });
 
-    return new Teacher(teacher).save();
+    return new Teacher(teacher).save().then(pick(['_id']));
 };
