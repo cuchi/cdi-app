@@ -3,6 +3,7 @@ const httpLogger = require('morgan');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
+const cors = require('cors')
 const api = require('./api');
 const config = require('config');
 
@@ -10,6 +11,8 @@ function run() {
     const app = express();
 
     app.use(httpLogger('dev'));
+
+    app.use(cors());
 
     app.use(bodyParser.json());
 
