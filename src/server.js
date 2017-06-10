@@ -26,8 +26,8 @@ function run() {
 
     app.use('/api', api.getRouter());
 
-    app.listen(8080, () => {
-        console.log('Listening on port 8080...');
+    app.listen(config.port, () => {
+        console.log(`Listening on port ${config.port}...`);
     });
 
     return app;
