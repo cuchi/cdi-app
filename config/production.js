@@ -1,6 +1,6 @@
 
 module.exports = {
-    port: 80,
+    port: process.env.PORT,
     mongodb: {
         url: process.env.MONGODB_URI
     }
