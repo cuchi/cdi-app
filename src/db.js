@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Bluebird = require('bluebird');
-const { db } = require('config');
+const config = require('config');
 
 const requiredString = {
     type: String,
@@ -8,7 +8,7 @@ const requiredString = {
 };
 
 function connect() {
-    const url = `mongodb://127.0.0.1:27017/${db.name}`;
+    const { url } = config.mongodb;
 
     mongoose.Promise = Bluebird;
 
