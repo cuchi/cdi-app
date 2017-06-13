@@ -26,6 +26,8 @@ function run() {
 
     app.use('/api', api.getRouter());
 
+    app.use('/', express.static('public'));
+
     app.listen(config.port, () => {
         console.log(`Listening on port ${config.port}...`);
     });
