@@ -1,9 +1,9 @@
 const Student = require('../model/student');
 const { isTeacher } = require('../utils');
-const { PermissionError } = require('..errors');
+const { assertStudent } = require('../utils');
 
 function getRanking(user) {
-    if (isTeacher(user)) throw new PermissionError('Not a student!');
+    assertStudent(user);
 
     return Student.aggregate([
         { $match: { classroom: currentStudent.classroom } },
