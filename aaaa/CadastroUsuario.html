@@ -1,0 +1,177 @@
+﻿<!DOCTYPE html>
+    <!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Material Admin</title>
+    
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
+        
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <header id="header" class="clearfix" data-current-skin="blue">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+
+                <li class="logo hidden-xs">
+                    <a href="index.html">Projeto Top</a>
+                </li>
+            </ul>
+            
+            <!-- Top Search Content -->
+            <!--<div id="top-search-wrap">
+                <div class="tsw-inner">
+                    <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
+                    <input type="text">
+                </div>
+            </div> -->
+        </header>
+        
+        <section id="main">
+            <aside id="sidebar" class="sidebar c-overflow">
+                <!-- <div class="profile-menu">
+                    <a href="">
+                        <div class="profile-pic">
+                            <img src="img/profile-pics/1.jpg" alt="">
+                        </div>
+
+                        <div class="profile-info">
+                            Malinda Hollaway
+
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
+                    </a>
+
+                    <ul class="main-menu">
+                        <li>
+                            <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>-->
+
+                <ul class="main-menu">
+                    <li><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
+                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
+                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
+                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
+                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
+                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
+                </ul>
+            </aside>
+        
+            <section id="content">
+                <div class="container">
+                    <div class="block-header">
+                        <h2>Cadastro de Usuário</h2>
+                    </div>
+                
+                    <div class="card">
+                        <div class="card-body card-padding">
+                            <form role="form">
+                                <div class="form-group fg-line">
+                                    <label for="Email">Email</label>
+                                    <input type="email" class="form-control input-sm" id="Email" placeholder="Email">
+                                </div>
+                                <div class="form-group fg-line">
+                                    <label for="Nome">Nome</label>
+                                    <input type="text" class="form-control input-sm" id="Nome" placeholder="Nome">
+                                </div>
+                                <div class="form-group fg-line">
+                                    <label for="DataNascimento">Data de nascimento</label>
+                                    <input type="text" class="form-control input-mask" id="DataNascimento" data-mask="00/00/0000" placeholder="ex: 23/05/2014">
+                                </div>
+                                <div class="form-group fg-line">
+                                    <label for="Sexo">Sexo</label>
+                                </div>
+                                <div class="form-group fg-line">
+                                    <label class="radio radio-inline m-r-20">
+                                        <input type="radio" name="Sexo" value="1">
+                                        <i class="input-helper"></i>
+                                        Masculino
+                                    </label>
+
+                                    <label class="radio radio-inline m-r-20">
+                                        <input type="radio" name="Sexo" value="2">
+                                        <i class="input-helper"></i>
+                                        Feminino
+                                    </label>
+                                </div>
+                                <div class="form-group fg-line">
+                                    <label for="Senha">Senha</label>
+                                    <input type="password" class="form-control input-sm" id="Senha" placeholder="Senha">
+                                </div>
+                                <div class="form-group fg-line">
+                                    <label for="ConfirmarSenha">Confirme sua senha</label>
+                                    <input type="password" class="form-control input-sm" id="ConfirmarSenha" placeholder="Confirme sua senha">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-sm m-t-10">Enviar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        
+        <footer id="footer">
+            Copyright &copy; 2017 Equipe Top
+        </footer>
+
+        <!-- Page Loader -->
+        <div class="page-loader">
+            <div class="preloader pls-blue">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20" />
+                </svg>
+
+                <p>Por favor, espere...</p>
+            </div>
+        </div>
+    
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+       
+        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+        <script src="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+        <script src="vendors/bower_components/chosen/chosen.jquery.min.js"></script>
+        <script src="vendors/fileinput/fileinput.min.js"></script>
+        <script src="vendors/input-mask/input-mask.min.js"></script>
+        <script src="vendors/farbtastic/farbtastic.min.js"></script>
+        <script src="js/functions.js"></script>
+        <script src="js/demo.js"></script>
+    
+    
+    </body>
+</html>

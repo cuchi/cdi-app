@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+    <!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Material Admin</title>
+    
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
+        
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet">
+    </head>
+    
+    <body>
+        <header id="header" class="clearfix" data-current-skin="blue">
+            <ul class="header-inner">
+                <li id="menu-trigger" data-trigger="#sidebar">
+                    <div class="line-wrap">
+                        <div class="line top"></div>
+                        <div class="line center"></div>
+                        <div class="line bottom"></div>
+                    </div>
+                </li>
+
+                <li class="logo hidden-xs">
+                    <a href="index.html">Projeto Top</a>
+                </li>
+            </ul>
+            
+            <!-- Top Search Content -->
+            <!--<div id="top-search-wrap">
+                <div class="tsw-inner">
+                    <i id="top-search-close" class="zmdi zmdi-arrow-left"></i>
+                    <input type="text">
+                </div>
+            </div> -->
+        </header>
+        
+        <section id="main">
+            <aside id="sidebar" class="sidebar c-overflow">
+                <!-- <div class="profile-menu">
+                    <a href="">
+                        <div class="profile-pic">
+                            <img src="img/profile-pics/1.jpg" alt="">
+                        </div>
+
+                        <div class="profile-info">
+                            Malinda Hollaway
+
+                            <i class="zmdi zmdi-caret-down"></i>
+                        </div>
+                    </a>
+
+                    <ul class="main-menu">
+                        <li>
+                            <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
+                        </li>
+                        <li>
+                            <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>-->
+
+                <ul class="main-menu">
+                    <li><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
+                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
+                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
+                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
+                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
+                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
+                </ul>
+            </aside>
+        
+            <section id="content">
+                <div class="container">
+                    <div class="block-header">
+                        <h2>Cadastro de Questão</h2>
+                    </div>
+                
+                    <div class="card">
+                        <div class="card-body card-padding">
+                            <form role="form">
+                                <div class="form-group fg-line">
+                                    <p class="f-500 c-black m-b-20">Imagem</p>
+                                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
+                                        <div>
+                                            <span class="btn btn-info btn-file">
+                                                <span class="fileinput-new">Select image</span>
+                                                <span class="fileinput-exists">Change</span>
+                                                <input type="file" name="...">
+                                            </span>
+                                            <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group fg-line">
+                                    <label for="Questao">Questão</label>
+                                    <textarea class="form-control" rows="5" id="Questao" placeholder="Questão...."></textarea>
+                                </div>
+                                <div id="alternativas">
+                                    <div class="form-group fg-line">
+                                        <label for="Alternativas[0]">Alternativa</label>
+                                        <input type="text" class="form-control input-sm" id="Alternativas[0]" placeholder="Alternativa">
+                                    </div>
+                                    <div class="form-group fg-line">
+                                        <label for="Alternativas[1]">Alternativa</label>
+                                        <input type="text" class="form-control input-sm" id="Alternativas[1]" placeholder="Alternativa">
+                                    </div>
+                                </div>
+                                <div class="form-group fg-line">
+                                    <button id="addAlternativa" class="btn btn-success waves-effect">Adicionar alternativa</button>
+                                </div>
+                                <div class="form-group fg-line">
+                                    <label for="Turmas">Turmas que receberão</label>
+                                </div>
+                                <div class="form-group fg-line">
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" value="1">
+                                            <i class="input-helper"></i>
+                                            Turma 1
+                                        </label>
+                                    </div>
+                                    <div class="checkbox m-b-15">
+                                        <label>
+                                            <input type="checkbox" value="2">
+                                            <i class="input-helper"></i>
+                                            Turma 2
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group fg-line">
+                                    <label for="DataHoraLimite">Data de nascimento</label>
+                                    <input type="text" class="form-control input-mask" id="DataHoraLimite" data-mask="00/00/0000 00:00:00" placeholder="ex: 23/05/2014 14:50:20">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-sm m-t-10">Enviar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+        
+        <footer id="footer">
+            Copyright &copy; 2017 Equipe Top
+        </footer>
+
+        <!-- Page Loader -->
+        <div class="page-loader">
+            <div class="preloader pls-blue">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20" />
+                </svg>
+
+                <p>Por favor, espere...</p>
+            </div>
+        </div>
+    
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+       
+        <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
+        <script src="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+        <script src="vendors/bower_components/chosen/chosen.jquery.min.js"></script>
+        <script src="vendors/fileinput/fileinput.min.js"></script>
+        <script src="vendors/input-mask/input-mask.min.js"></script>
+        <script src="vendors/farbtastic/farbtastic.min.js"></script>
+        <script src="js/functions.js"></script>
+        <script src="js/demo.js"></script>
+
+        <script type="text/javascript">
+            var counter, limit = 5;
+            $(document).ready(function () {
+                counter = 2;
+            });
+            $("#addAlternativa").on("click", function () {
+                if (counter < limit) {
+                    counter++;
+                    var html = '<div class="form-group fg-line">' +
+                        '<label for="Alternativas[' + counter + ']">Alternativa</label>' +
+                        '<input type="text" class="form-control input-sm" id="Alternativas[' + counter + ']" placeholder="Alternativa">' +
+                        '</div>';
+                    $("#alternativas").append(html);
+                }
+                else {
+                    alert("Limite de alternativas atingido!");
+                }
+                return false;
+            })
+        </script>
+    
+    
+    </body>
+</html>
