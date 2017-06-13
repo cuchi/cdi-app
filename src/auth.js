@@ -29,7 +29,7 @@ function verifyPassword(fullPassword, plain) {
 function authenticateModel(model) {
     return (email, password, done) => {
         model.findOne({ email })
-            .then(when(isNil, () => fail(new AuthenticationError())))
+            .then(when(isNil, () => done(new AuthenticationError())))
             .then(user =>
                 verifyPassword(user.password, password)
                     ? done(null, user)

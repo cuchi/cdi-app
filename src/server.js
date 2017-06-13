@@ -19,7 +19,10 @@ function run() {
     app.use(session({ 
         secret: 'secret',
         resave: true,
-        saveUninitialized: false
+        saveUninitialized: false,
+        cookie: {
+            maxAge: 61516800000
+        }
     }));
 
     app.use([passport.initialize(), passport.session()]);
@@ -27,6 +30,14 @@ function run() {
     app.use('/api', api.getRouter());
 
     app.use('/', express.static('public'));
+
+    // Error handling
+    app.use((err, req, res, next) => {
+        if (err && err.status) {
+            res.sendStatus(err.status);
+        }
+        next(err);
+    });
 
     app.listen(config.port, () => {
         console.log(`Listening on port ${config.port}...`);
