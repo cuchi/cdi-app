@@ -1,16 +1,27 @@
 
-class NotFoundError extends Error {
-    constructor(message) {
+class HttpError extends Error {
+    constructor(message, statusCode) {
         super(message);
-        this.status = 404;
+        this.status = statusCode;
     }
 }
 
-class AuthenticationError extends Error {
+class NotFoundError extends HttpError {
     constructor(message) {
-        super(message);
-        this.status = 401;
+        super(message, 404);
     }
 }
 
-module.exports = { NotFoundError, AuthenticationError };
+class AuthenticationError extends HttpError {
+    constructor(message) {
+        super(message, 401);
+    }
+}
+
+class PermissionError extends HttpError {
+    constructor(message) {
+        super(message, 403);
+    }
+}
+
+module.exports = { NotFoundError, AuthenticationError, PermissionError };

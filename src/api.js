@@ -10,7 +10,7 @@ function getRouter() {
     const router = new Router();
 
     router.get('/status', (req, res) => {
-        res.status(200).send('Everything is fine!');
+        res.status(200).json({ message: 'It works!' });
     });
 
     router.post('/teacher/session', [
@@ -32,6 +32,17 @@ function getRouter() {
     router.post('/student/:token', (req, res, next) => {
         createStudent(req.params.token, req.body)
             .then(student => res.status(201).send(student))
+            .catch(next);
+    });
+
+    router.put('/classroom/:classroomId/invitations', (req, res, next) => {
+        inviteStudents(req.params.classroomId, req.body, req.user)
+            .then(invitations => res.status(201).json(invitations))
+    });
+
+    router.post('/classroom', (req, res, next) => {
+        createClassroom(req.body, req.user)
+            .then(classroom => res.status(201).json(classroom))
             .catch(next);
     });
 
