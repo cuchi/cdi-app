@@ -6,7 +6,7 @@ const Teacher = new mongoose.Schema({
     code: String,
     email: requiredString,
     password: requiredString,
-    phone: requiredString
+    phone: String
 });
 
 const indexes = [

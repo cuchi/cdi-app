@@ -8,7 +8,6 @@
     
         <!-- Vendor CSS -->
         <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
         <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
         <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
         <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
@@ -21,14 +20,6 @@
     <body>
         <header id="header" class="clearfix" data-current-skin="blue">
             <ul class="header-inner">
-                <li id="menu-trigger" data-trigger="#sidebar">
-                    <div class="line-wrap">
-                        <div class="line top"></div>
-                        <div class="line center"></div>
-                        <div class="line bottom"></div>
-                    </div>
-                </li>
-
                 <li class="logo hidden-xs">
                     <a href="index.html">Projeto Top</a>
                 </li>
@@ -44,94 +35,36 @@
         </header>
         
         <section id="main">
-            <aside id="sidebar" class="sidebar c-overflow">
-                <!-- <div class="profile-menu">
-                    <a href="">
-                        <div class="profile-pic">
-                            <img src="img/profile-pics/1.jpg" alt="">
-                        </div>
-
-                        <div class="profile-info">
-                            Malinda Hollaway
-
-                            <i class="zmdi zmdi-caret-down"></i>
-                        </div>
-                    </a>
-
-                    <ul class="main-menu">
-                        <li>
-                            <a href="profile-about.html"><i class="zmdi zmdi-account"></i> View Profile</a>
-                        </li>
-                        <li>
-                            <a href=""><i class="zmdi zmdi-input-antenna"></i> Privacy Settings</a>
-                        </li>
-                        <li>
-                            <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
-                        </li>
-                        <li>
-                            <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
-                        </li>
-                    </ul>
-                </div>-->
-
-                <ul class="main-menu">
-                    <li><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
-                </ul>
-            </aside>
+           
         
             <section id="content">
                 <div class="container">
                     <div class="block-header">
-                        <h2>Cadastro de Usuário</h2>
+                        <h2 id="title">Cadastro</h2>
                     </div>
                 
                     <div class="card">
                         <div class="card-body card-padding">
-                            <form role="form">
-                                <div class="form-group fg-line">
-                                    <label for="Email">Email</label>
-                                    <input type="email" class="form-control input-sm" id="Email" placeholder="Email">
-                                </div>
-                                <div class="form-group fg-line">
-                                    <label for="Nome">Nome</label>
-                                    <input type="text" class="form-control input-sm" id="Nome" placeholder="Nome">
-                                </div>
-                                <div class="form-group fg-line">
-                                    <label for="DataNascimento">Data de nascimento</label>
-                                    <input type="text" class="form-control input-mask" id="DataNascimento" data-mask="00/00/0000" placeholder="ex: 23/05/2014">
-                                </div>
-                                <div class="form-group fg-line">
-                                    <label for="Sexo">Sexo</label>
-                                </div>
-                                <div class="form-group fg-line">
-                                    <label class="radio radio-inline m-r-20">
-                                        <input type="radio" name="Sexo" value="1">
-                                        <i class="input-helper"></i>
-                                        Masculino
-                                    </label>
+                            <div id="email-line" class="form-group fg-line">
+                                <label for="email">E-mail</label>
+                                <input type="email" class="form-control input-sm" id="email" placeholder="E-mail">
+                            </div>
+                            <div class="form-group fg-line">
+                                <label for="name">Nome</label>
+                                <input type="text" class="form-control input-sm" id="name" placeholder="Nome">
+                            </div>
+                            <div id="password-line" class="form-group fg-line">
+                                <label for="password">Senha</label>
+                                <input type="password" class="form-control input-sm" id="password" placeholder="Senha">
+                            </div>
+                            <div id="password-confirm-line" class="form-group fg-line">
+                                <label for="password-confirm">Confirme sua senha</label>
+                                <input type="password" class="form-control input-sm" id="password-confirm" placeholder="Confirme sua senha">
+                            </div>
 
-                                    <label class="radio radio-inline m-r-20">
-                                        <input type="radio" name="Sexo" value="2">
-                                        <i class="input-helper"></i>
-                                        Feminino
-                                    </label>
-                                </div>
-                                <div class="form-group fg-line">
-                                    <label for="Senha">Senha</label>
-                                    <input type="password" class="form-control input-sm" id="Senha" placeholder="Senha">
-                                </div>
-                                <div class="form-group fg-line">
-                                    <label for="ConfirmarSenha">Confirme sua senha</label>
-                                    <input type="password" class="form-control input-sm" id="ConfirmarSenha" placeholder="Confirme sua senha">
-                                </div>
+                            <div id="error-alert" style="display: none" class="alert alert-danger" role="alert"></div>
 
-                                <button type="submit" class="btn btn-primary btn-sm m-t-10">Enviar</button>
-                            </form>
+                            <button onclick="createAccount()" class="btn btn-primary btn-lg m-t-10">Cadastre-se</button>
                         </div>
                     </div>
                 </div>
@@ -160,18 +93,115 @@
         <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
         <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
-        <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
        
         <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
-        <script src="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
         <script src="vendors/bower_components/chosen/chosen.jquery.min.js"></script>
         <script src="vendors/fileinput/fileinput.min.js"></script>
         <script src="vendors/input-mask/input-mask.min.js"></script>
         <script src="vendors/farbtastic/farbtastic.min.js"></script>
         <script src="js/functions.js"></script>
-        <script src="js/demo.js"></script>
+
+        <script src="js/utils.js"></script>
     
+        <script type="text/javascript">
+            var token = getUrlQuery().token;
+            var reset = () => {};
+
+            function createAccount() {
+                reset();
+                var email = $('#email').val();
+                var name = $('#name').val();
+                var password = $('#password').val();
+                var passwordConfirmation = $('#password-confirm').val();
+
+                if (password !== passwordConfirmation) {
+                    passwordConfirmationError();
+                    return;
+                }
+
+                if (password.length < 6) {
+                    passwordLengthError();
+                    return;
+                }
+
+                $.ajax({
+                    method: 'POST',
+                    url: `api/${token ? 'student' : 'teacher'}`,
+                    data: JSON.stringify({ email, name, password }),
+                    contentType: 'application/json',
+                    success: () => {
+                        window.location.replace('index.html?account_created');
+                    },
+                    error: () => {
+                        unavailableEmailError();
+                    }
+                })
+            }
+
+            function showErrorAlert(message) {
+                $('#error-alert').html(message);
+                $('#error-alert').show(200);                
+            }
+
+            function hideErrorAlert(message) {
+                $('#error-alert').hide(200);                
+            }
+
+            function passwordConfirmationError() {
+                $('#password-line').addClass('has-error');
+                $('#password-confirm-line').addClass('has-error');
+                showErrorAlert('As senhas não conferem!');
+                reset = () => {
+                    $('#password-line').removeClass('has-error');
+                    $('#password-confirm-line').removeClass('has-error');
+                    hideErrorAlert();
+                };
+            }
+
+            function passwordLengthError() {
+                $('#password-line').addClass('has-error');
+                showErrorAlert('A senha é muito curta! Use pelo menos 6 caracteres.');
+                reset = () => {
+                    $('#password-line').removeClass('has-error');
+                    hideErrorAlert();
+                };
+            }
+
+            function unavailableEmailError() {
+                $('#email-line').addClass('has-error');
+                showErrorAlert('O e-mail já está em uso!');
+                reset = () => {
+                    $('#email-line').removeClass('has-error');
+                    hideErrorAlert();
+                };
+            }
+
+            function setupForStudent() {
+                $('#title').html('Cadastro de estudante');
+                $('#email').prop('disabled', true);
+
+                $.ajax({
+                    method: 'GET',
+                    url: `api/student/token/${token}`,
+                    success: tokenInfo => {
+                        $('#email').html(token.email);
+                    },
+                    error: () => window.location.replace('index.html')
+                });
+            }
+
+            function setupForTeacher() {
+                $('#title').html('Cadastro de professor');
+            }
+
+            if (token) {
+                setupForStudent();
+            } else {
+                setupForTeacher();
+            }
+
+        </script>
     
     </body>
 </html>

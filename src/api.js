@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const passport = require('passport');
 const createStudent = require('./actions/createStudent');
+const getStudentToken = require('./actions/getStudentToken');
 const createTeacher = require('./actions/createTeacher');
 const getRanking = require('./actions/getRanking');
 
@@ -25,13 +26,19 @@ function getRouter() {
 
     router.post('/teacher', (req, res, next) => {
         createTeacher(req.body)
-            .then(teacher => res.status(201).send(teacher))
+            .then(teacher => res.status(201).json(teacher))
             .catch(next);
     });
 
-    router.post('/student/:token', (req, res, next) => {
+    router.post('/student', (req, res, next) => {
         createStudent(req.params.token, req.body)
-            .then(student => res.status(201).send(student))
+            .then(student => res.status(201).json(student))
+            .catch(next);
+    });
+
+    router.get('/student/token/:token', (req, res, next) => {
+        getStudentToken(req.params.token)
+            .then(token => res.status(200).json(token))
             .catch(next);
     });
 

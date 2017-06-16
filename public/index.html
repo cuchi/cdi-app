@@ -18,6 +18,9 @@
     <body class="login-content">
         <!-- Login -->
         <div class="lc-block toggled" id="l-login">
+            <div id="created-account-alert" style="display: none" class="alert alert-success" role="alert">
+                Sua conta foi criada! Faça o login abaixo.
+            </div>
             <div id="login-error" style="display: none" class="alert alert-danger" role="alert">
                 Usuário ou senha incorretos!
             </div>
@@ -37,7 +40,7 @@
 
             <div class="input-group m-b-20">
                 <label class="radio radio-inline m-r-20">
-                    <input type="radio" name="user-type" value="student">
+                    <input type="radio" name="user-type" value="student" checked>
                     <i class="input-helper"></i>
                     Aluno
                 </label>
@@ -125,7 +128,13 @@
 
         <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
 
+        <script src="js/utils.js"></script>
+
         <script type="text/javascript">
+            if (getUrlQuery().account_created) {
+                $('#created-account-alert').show(200);
+            }
+
             function login() {
                 var email = $('#email').val();
                 var password = $('#password').val();
