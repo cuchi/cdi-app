@@ -65,11 +65,15 @@
             <div class="input-group m-b-20">
                 <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
                 <div class="fg-line">
-                    <input type="text" class="form-control" placeholder="Email">
+                    <input id="recovery-email" type="text" class="form-control" placeholder="Email">
                 </div>
             </div>
 
-            <a onclick="forgorPassword()" class="btn btn-login btn-danger btn-float"><i class="zmdi zmdi-arrow-forward"></i></a>
+            <div id="sent-email" style="display: none" class="alert alert-success" role="alert">
+                E-mail enviado!
+            </div>
+
+            <a onclick="forgotPassword()" class="btn btn-login btn-danger btn-float"><i class="zmdi zmdi-arrow-forward"></i></a>
         </div>
 
         <!-- Older IE warning message -->
@@ -131,17 +135,35 @@
                     method: 'POST',
                     url: `api/${userType}/session`,
                     data: JSON.stringify({ email, password }),
-                    contentType: 'application/json'
-                })
-                .then(res => {
-                    window.location.replace('/ranking.html');
-                }, err => {
-                    $('#login-error').show(400);
+                    contentType: 'application/json',
+                    success: () => window.location.replace('/ranking.html'),
+                    error: loginError
                 });
             }
 
-            function forgotPassword() {
+            function showAlert(id) {
+                $(id).show(200);
+                setTimeout(() => $(id).hide(200), 2000);
+            }
 
+            function loginError() {
+                showAlert('#login-error');
+            }
+
+            function emailSent() {
+                showAlert('#sent-email');
+            }
+
+            function forgotPassword() {
+                var email = $('#recovery-email').val();
+
+                $.ajax({
+                    method: 'POST',
+                    url: 'api/recovery',
+                    data: JSON.stringify({ email }),
+                    contentType: 'application/json',
+                    success: emailSent
+                })
             }
         </script>
 
