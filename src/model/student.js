@@ -4,12 +4,18 @@ const { requiredString } = require('../db');
 const Student = new mongoose.Schema({
     name: requiredString,
     password: requiredString,
-    code: requiredString,
+    code: String,
     email: requiredString,
-    phone: requiredString,
+    phone: String,
+    gender: {
+        type: String,
+        enum: ['m', 'f', 'o']
+    },
+    birthDate: String,
     classroom: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Classroom'
+        ref: 'Classroom',
+        required: true
     },
     score: {
         type: Number,

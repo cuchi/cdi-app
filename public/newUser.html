@@ -128,7 +128,7 @@
                 $.ajax({
                     method: 'POST',
                     url: `api/${token ? 'student' : 'teacher'}`,
-                    data: JSON.stringify({ email, name, password }),
+                    data: JSON.stringify({ email, name, password, token }),
                     contentType: 'application/json',
                     success: () => {
                         window.location.replace('index.html?account_created');

@@ -74,12 +74,7 @@
                     </ul>
                 </div>-->
 
-                <ul class="main-menu">
-                    <li><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
-                    <li><a href="ListaEstudantes.html"><i class="zmdi zmdi-accounts-alt"></i> Ranking</a></li>
-                    <li><a href="ConsultaAluno.html"><i class="zmdi zmdi-assignment-account"></i> Consultar Aluno</a></li>
-                    <li><a href="ConsultaQuestao.html"><i class="zmdi zmdi-view-toc"></i> Consultar Questões</a></li>
-                </ul>
+                <ul id="main-menu" class="main-menu"></ul>
             </aside>
 
 
@@ -89,45 +84,33 @@
                         <div class="pm-overview c-overflow">
                             <div class="pmo-pic">
                                 <div class="p-relative">
-                                    <a href="">
-                                        <img class="img-responsive" src="img/profile/manga_suzie.jpg" alt="">
-                                    </a>
+                                    <img class="img-responsive" src="http://via.placeholder.com/350x150">
                                 </div>
 
-
-                                <div class="pmo-stat">
-                                    <h2 class="m-0 c-white">xxxx</h2>
+                                <div id="show-score" class="pmo-stat">
+                                    <h2 id="score" class="m-0 c-white">666</h2>
                                     Pontuação
                                 </div>
                             </div>
 
                             <div class="pmo-block pmo-contact hidden-xs">
                                 <h2>Contato</h2>
-
                                 <ul>
-                                    <li><i class="zmdi zmdi-email"></i> malinda-h@gmail.com</li>
+                                    <li id="email"></li>
                                 </ul>
                             </div>
-
-
                         </div>
 
                         <div class="pm-body clearfix">
                             <div class="pmb-block">
                                 <div class="pmbb-header">
-                                    <h2><i class="zmdi zmdi-account m-r-5"></i> Informações</h2>
+                                    <h2><i class="zmdi zmdi-account m-r-5"></i>Suas informações</h2>
 
                                     <ul class="actions">
-                                        <li class="dropdown">
-                                            <a href="" data-toggle="dropdown">
-                                                <i class="zmdi zmdi-more-vert"></i>
+                                        <li>
+                                            <a id="edit-action" data-pmb-action="edit" href="">
+                                                <i class="zmdi zmdi-edit"></i>
                                             </a>
-
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li>
-                                                    <a data-pmb-action="edit" href="">Edit</a>
-                                                </li>
-                                            </ul>
                                         </li>
                                     </ul>
                                 </div>
@@ -135,63 +118,63 @@
                                     <div class="pmbb-view">
                                         <dl class="dl-horizontal">
                                             <dt>Nome</dt>
-                                            <dd>Mallinda Hollaway</dd>
+                                            <dd id="name"></dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt>Matrícula</dt>
+                                            <dd id="code"></dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt>Telefone</dt>
+                                            <dd id="phone"></dd>
                                         </dl>
                                         <dl class="dl-horizontal">
                                             <dt>Sexo</dt>
-                                            <dd>Female</dd>
-                                        </dl>
-                                        <dl class="dl-horizontal">
-                                            <dt>Data de Nascimento</dt>
-                                            <dd>June 23, 1990</dd>
+                                            <dd id="gender"></dd>
                                         </dl>
                                     </div>
 
                                     <div class="pmbb-edit">
                                         <dl class="dl-horizontal">
-                                            <dt class="p-t-10">Full Name</dt>
+                                            <dt class="p-t-10">Nome</dt>
                                             <dd>
                                                 <div class="fg-line">
-                                                    <input type="text" class="form-control" placeholder="eg. Mallinda Hollaway">
-                                                </div>
-
-                                            </dd>
-                                        </dl>
-                                        <dl class="dl-horizontal">
-                                            <dt class="p-t-10">Gender</dt>
-                                            <dd>
-                                                <div class="fg-line">
-                                                    <select class="form-control">
-                                                        <option>Male</option>
-                                                        <option>Female</option>
-                                                        <option>Other</option>
-                                                    </select>
+                                                    <input id="name-input" type="text" class="form-control">
                                                 </div>
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal">
-                                            <dt class="p-t-10">Birthday</dt>
+                                            <dt class="p-t-10">Matrícula</dt>
                                             <dd>
-                                                <div class="dtp-container dropdown fg-line">
-                                                    <input type='text' class="form-control date-picker" data-toggle="dropdown" placeholder="Click here...">
+                                                <div class="fg-line">
+                                                    <input id="code-input" type="text" class="form-control">
                                                 </div>
                                             </dd>
                                         </dl>
                                         <dl class="dl-horizontal">
-                                            <dt class="p-t-10">Martial Status</dt>
+                                            <dt class="p-t-10">Telefone</dt>
                                             <dd>
                                                 <div class="fg-line">
-                                                    <select class="form-control">
-                                                        <option>Single</option>
-                                                        <option>Married</option>
-                                                        <option>Other</option>
+                                                    <input id="phone-input" type="text" class="form-control">
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                        <dl class="dl-horizontal">
+                                            <dt class="p-t-10">Sexo</dt>
+                                            <dd>
+                                                <div class="fg-line">
+                                                    <select id="gender-input" class="form-control">
+                                                        <option></option>
+                                                        <option value="m">Masculino</option>
+                                                        <option value="f">Feminino</option>
+                                                        <option value="o">Outro</option>
                                                     </select>
                                                 </div>
                                             </dd>
                                         </dl>
 
                                         <div class="m-t-30">
-                                            <button class="btn btn-primary btn-sm">Save</button>
+                                            <button onclick="saveUser()" class="btn btn-primary btn-sm">Save</button>
                                             <button data-pmb-action="reset" class="btn btn-link btn-sm">Cancel</button>
                                         </div>
                                     </div>
@@ -277,8 +260,63 @@
         <![endif]-->
 
         <script src="js/functions.js"></script>
-        <script src="js/demo.js"></script>
+        <script src="js/utils.js"></script>
 
+        <script type="text/javascript">
+            fetchUserInfo();
+            fetchData();
+
+            var genders = {
+                m: 'Masculino',
+                f: 'Feminino',
+                o: 'Outro'
+            };
+
+            function populateUser(user) {
+                $('#email').html('<i class="zmdi zmdi-email"></i>');
+                $('#email').append(user.email);
+
+                $('#score').text(user.score);
+
+                $('#name').text(user.name);
+                $('#name-input').val(user.name);
+
+                $('#code').text(user.code);
+                $('#code-input').val(user.code);
+
+                $('#phone').text(user.phone);
+                $('#phone-input').val(user.phone);
+
+                $('#gender').text(genders[user.gender]);
+                $('#gender-input').val(user.gender);
+            }
+
+            function fetchData() {
+                $.ajax({
+                    method: 'GET',
+                    url: 'api/me',
+                    success: populateUser
+                });
+            }
+
+            function saveUser() {
+                var name = $('#name-input').val();
+                var code = $('#code-input').val();
+                var phone = $('#phone-input').val();
+                var gender = $('#gender-input').val();
+
+                $.ajax({
+                    method: 'PATCH',
+                    url: 'api/me',
+                    data: JSON.stringify({ name, code, phone, gender }),
+                    contentType: 'application/json',
+                    success: () => {
+                        fetchData();
+                        $('#edit-action').trigger('click');
+                    }
+                })
+            }
+        </script>
 
     </body>
 </html>

@@ -6,7 +6,12 @@ const Teacher = new mongoose.Schema({
     code: String,
     email: requiredString,
     password: requiredString,
-    phone: String
+    phone: String,
+    gender: {
+        type: String,
+        enum: ['m', 'f', 'o']
+    },
+    birthDate: String,
 });
 
 const indexes = [

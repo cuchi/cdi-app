@@ -15,7 +15,7 @@ function sendInvite(invite, teacherName) {
 
             Para criar sua conta, acesse o link
             https://cdi-app.herokuapp.com/newUser.html?token=${invite.token}
-        `)
+        `);
 }
 
 function createInvite(classroomId, email, teacherName) {

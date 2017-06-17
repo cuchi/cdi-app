@@ -20,7 +20,7 @@ function connect() {
         });
 }
 
-module.exports = { 
+module.exports = {
     connect,
     requiredString
 };

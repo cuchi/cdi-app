@@ -9,7 +9,8 @@ function getUserInfo(user) {
 
     return model.findById(user._id)
         .lean()
-        .then(pick(['_id', 'name', 'email', 'score' ]))
+        .then(pick(['_id', 'name', 'phone', 'code',
+            'gender', 'email', 'score']))
         .then(assoc('model', user.model));
 }
 

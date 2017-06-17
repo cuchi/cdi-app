@@ -25,6 +25,7 @@ function teacherMenu() {
         <li><a href="ranking.html"><i class="zmdi zmdi-view-list"></i>Ranking</a></li>
         <li><a href="profile.html"><i class="zmdi zmdi-account"></i>Meu Perfil</a></li>
         <li><a href="classrooms.html"><i class="zmdi zmdi-collection-bookmark"></i>Turmas</a></li>
+        <li><a href="manageQuestions.html"><i class="zmdi zmdi-assignment-check"></i>Questões</a></li>
         <li><a href="#" onclick="logout()"><i class="zmdi zmdi-sign-in"></i>Sair</a></li>
     `);
 }
@@ -44,10 +45,15 @@ function fetchUserInfo() {
     });
 }
 
+function goToIndex() {
+    window.location.replace('index.html');
+}
+
 function logout() {
     $.ajax({
         method: 'DELETE',
         url: 'api/session',
-        success: () => window.location.replace('index.html')
+        success: goToIndex,
+        error: goToIndex
     });
 }

@@ -6,7 +6,7 @@ function getRanking(user) {
     assertStudent(user);
 
     return Student.aggregate([
-        { $match: { classroom: currentStudent.classroom } },
+        { $match: { classroom: user.classroom } },
         { $project: { name: true, code: true, score: true } },
         { $sort: { score: -1 } }]);
 }

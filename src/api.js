@@ -4,6 +4,7 @@ const { enforceAuthentication } = require('./auth');
 const createStudent = require('./actions/createStudent');
 const getStudentToken = require('./actions/getStudentToken');
 const getUserInfo = require('./actions/getUserInfo');
+const patchUserInfo = require('./actions/patchUserInfo');
 const getClassrooms = require('./actions/getClassrooms');
 const createTeacher = require('./actions/createTeacher');
 const createClassroom = require('./actions/createClassroom');
@@ -36,7 +37,7 @@ function getRouter() {
     });
 
     router.post('/student', (req, res, next) => {
-        createStudent(req.query.token, req.body)
+        createStudent(req.body)
             .then(student => res.status(201).json(student))
             .catch(next);
     });
@@ -76,6 +77,12 @@ function getRouter() {
     router.get('/me', (req, res, next) => {
         getUserInfo(req.user)
             .then(user => res.status(200).json(user))
+            .catch(next);
+    });
+
+    router.patch('/me', (req, res, next) => {
+        patchUserInfo(req.body, req.user)
+            .then(() => res.sendStatus(200))
             .catch(next);
     });
 
