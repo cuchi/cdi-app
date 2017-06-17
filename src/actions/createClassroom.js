@@ -1,3 +1,4 @@
+const { pick } = require('ramda')
 const Classroom = require('../model/classroom');
 const { assertTeacher } = require('../utils');
 
@@ -6,7 +7,7 @@ function createClassroom(classroom, user) {
 
     const classroomObj = {
         name: classroom.name,
-        teacher: teacher._id
+        teacher: user._id
     };
 
     return new Classroom(classroomObj).save().then(pick(['_id']));

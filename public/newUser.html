@@ -5,18 +5,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Material Admin</title>
-    
+
         <!-- Vendor CSS -->
         <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
         <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
         <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
-        
+        <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+
         <!-- CSS -->
         <link href="css/app.min.1.css" rel="stylesheet">
         <link href="css/app.min.2.css" rel="stylesheet">
     </head>
-    
+
     <body>
         <header id="header" class="clearfix" data-current-skin="blue">
             <ul class="header-inner">
@@ -24,7 +24,7 @@
                     <a href="index.html">Projeto Top</a>
                 </li>
             </ul>
-            
+
             <!-- Top Search Content -->
             <!--<div id="top-search-wrap">
                 <div class="tsw-inner">
@@ -33,16 +33,16 @@
                 </div>
             </div> -->
         </header>
-        
+
         <section id="main">
-           
-        
+
+
             <section id="content">
                 <div class="container">
                     <div class="block-header">
                         <h2 id="title">Cadastro</h2>
                     </div>
-                
+
                     <div class="card">
                         <div class="card-body card-padding">
                             <div id="email-line" class="form-group fg-line">
@@ -70,7 +70,7 @@
                 </div>
             </section>
         </section>
-        
+
         <footer id="footer">
             Copyright &copy; 2017 Equipe Top
         </footer>
@@ -85,15 +85,15 @@
                 <p>Por favor, espere...</p>
             </div>
         </div>
-    
+
         <!-- Javascript Libraries -->
         <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        
+
         <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
         <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
-       
+
         <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
 
         <script src="vendors/bower_components/chosen/chosen.jquery.min.js"></script>
@@ -103,7 +103,7 @@
         <script src="js/functions.js"></script>
 
         <script src="js/utils.js"></script>
-    
+
         <script type="text/javascript">
             var token = getUrlQuery().token;
             var reset = () => {};
@@ -141,11 +141,11 @@
 
             function showErrorAlert(message) {
                 $('#error-alert').html(message);
-                $('#error-alert').show(200);                
+                $('#error-alert').show(200);
             }
 
             function hideErrorAlert(message) {
-                $('#error-alert').hide(200);                
+                $('#error-alert').hide(200);
             }
 
             function passwordConfirmationError() {
@@ -185,7 +185,7 @@
                     method: 'GET',
                     url: `api/student/token/${token}`,
                     success: tokenInfo => {
-                        $('#email').html(token.email);
+                        $('#email').val(tokenInfo.email);
                     },
                     error: () => window.location.replace('index.html')
                 });
@@ -202,6 +202,6 @@
             }
 
         </script>
-    
+
     </body>
 </html>

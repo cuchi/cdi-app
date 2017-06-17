@@ -1,4 +1,4 @@
-Isso é webservice que será utilizado nos trabalhos de _Informática na Educação_
+Isso é uma aplicação web que será utilizada nos trabalhos de _Informática na Educação_
 e _Desenvolvimento de Aplicações Web_ da UDESC.
 
 ## Checklist
@@ -13,19 +13,19 @@ e _Desenvolvimento de Aplicações Web_ da UDESC.
 - [ ] Implementar a API
     - [ ] Restrições por tipo de usuário
     - [x] `GET /status`
-    - [ ] `POST /logout`
+    - [x] `DELETE /session`
+    - [ ] `GET /me`
     - [ ] Rotas pra professor
         - [x] `POST /teacher/session`
         - [ ] `POST /question`
         - [ ] `POST /classroom`
-        - [ ] `GET /classrooms`
+        - [x] `GET /classrooms`
         - [ ] `POST /classroom/:classroomId/invitation`
     - [ ] Rotas pra aluno
         - [ ] `POST /student/token`
         - [x] `POST /student/session`
-        - [ ] `GET /me`
         - [ ] `GET /classroom`
-        - [ ] `GET /ranking`
+        - [x] `GET /ranking`
         - [ ] `POST /question/:questionId`
         - [ ] `GET /questions`
 - [ ] Testes

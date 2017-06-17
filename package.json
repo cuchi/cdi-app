@@ -31,6 +31,7 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "ramda": "^0.23.0",
+    "sendgrid": "^5.1.1",
     "supertest": "^3.0.0",
     "winston": "^2.3.1"
   },

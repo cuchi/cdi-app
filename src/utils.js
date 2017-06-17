@@ -1,4 +1,5 @@
 const { PermissionError } = require('./errors');
+const crypto = require('crypto');
 
 const fail = err => { throw err };
 
@@ -12,4 +13,8 @@ function assertTeacher(user) {
     if (!isTeacher(user)) throw new PermissionError('Not a teacher!');
 }
 
-module.exports = { fail, assertTeacher, assertStudent };
+function generateToken() {
+    return crypto.randomBytes(32).toString('hex');
+}
+
+module.exports = { fail, assertTeacher, assertStudent, generateToken };

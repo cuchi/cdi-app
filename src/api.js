@@ -6,6 +6,8 @@ const getStudentToken = require('./actions/getStudentToken');
 const getUserInfo = require('./actions/getUserInfo');
 const getClassrooms = require('./actions/getClassrooms');
 const createTeacher = require('./actions/createTeacher');
+const createClassroom = require('./actions/createClassroom');
+const inviteStudents = require('./actions/inviteStudents');
 const getRanking = require('./actions/getRanking');
 
 const send501 = (req, res) => res.sendStatus(501);
@@ -34,7 +36,7 @@ function getRouter() {
     });
 
     router.post('/student', (req, res, next) => {
-        createStudent(req.params.token, req.body)
+        createStudent(req.query.token, req.body)
             .then(student => res.status(201).json(student))
             .catch(next);
     });
@@ -47,9 +49,16 @@ function getRouter() {
 
     router.use(enforceAuthentication);
 
+    router.delete('/session', (req, res) => {
+        req.logout();
+        req.session.destroy();
+        res.sendStatus(200);
+    });
+
     router.put('/classroom/:classroomId/invitations', (req, res, next) => {
         inviteStudents(req.params.classroomId, req.body, req.user)
             .then(invitations => res.status(201).json(invitations))
+            .catch(next);
     });
 
     router.post('/classroom', (req, res, next) => {
@@ -78,7 +87,7 @@ function getRouter() {
 
     router.get('/ranking', (req, res, next) => {
         getRanking(req.user)
-            .then(ranking => res.status(200).send(ranking))
+            .then(ranking => res.status(200).json(ranking))
             .catch(next);
     });
 

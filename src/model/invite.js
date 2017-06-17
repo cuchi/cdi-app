@@ -6,8 +6,10 @@ const Invite = new mongoose.Schema({
     email: requiredString,
     classroom: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Classroom'
-    }
+        ref: 'Classroom',
+        required: true
+    },
+    sent: Date
 });
 
-module.exports = mongoose.model('Invite', Invite)
+module.exports = mongoose.model('Invite', Invite);
