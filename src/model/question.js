@@ -1,29 +1,35 @@
 const mongoose = require('mongoose');
-const R = require('ramda');
 const { requiredString } = require('../db');
 
-const Answer = {
-    description: requiredString,
-    isCorrect: Boolean
+const Classroom = {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Classroom'
 };
 
 const Question = new mongoose.Schema({
-    title: requiredString,
+    description: requiredString,
     date: {
         type: Date,
         default: Date.now
     },
     answers: {
-        type: [Answer],
+        type: [String],
+        required: true
+    },
+    correctAnswer: {
+        type: Number,
         required: true
     },
     feedback: String,
     limit: Number,
-    points: Number,
-    classroom: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Classroom'
+    points: {
+        type: Number,
+        required: true
+    },
+    classrooms: {
+        type: [Classroom],
+        required: true
     }
 });
 
-exports.default = mongoose.model('Question', Question);
+module.exports = mongoose.model('Question', Question);

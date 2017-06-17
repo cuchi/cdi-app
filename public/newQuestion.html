@@ -5,19 +5,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Material Admin</title>
-    
+
         <!-- Vendor CSS -->
         <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
         <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
         <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
         <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet">  
-        
+
         <!-- CSS -->
         <link href="css/app.min.1.css" rel="stylesheet">
         <link href="css/app.min.2.css" rel="stylesheet">
     </head>
-    
+
     <body>
         <header id="header" class="clearfix" data-current-skin="blue">
             <ul class="header-inner">
@@ -33,7 +32,7 @@
                     <a href="index.html">Projeto Top</a>
                 </li>
             </ul>
-            
+
             <!-- Top Search Content -->
             <!--<div id="top-search-wrap">
                 <div class="tsw-inner">
@@ -42,7 +41,7 @@
                 </div>
             </div> -->
         </header>
-        
+
         <section id="main">
             <aside id="sidebar" class="sidebar c-overflow">
                 <!-- <div class="profile-menu">
@@ -74,89 +73,71 @@
                     </ul>
                 </div>-->
 
-                <ul class="main-menu">
-                    <li><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
-                    <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
+                <ul id="main-menu" class="main-menu">
+
                 </ul>
             </aside>
-        
+
             <section id="content">
                 <div class="container">
                     <div class="block-header">
                         <h2>Cadastro de Questão</h2>
                     </div>
-                
+
                     <div class="card">
                         <div class="card-body card-padding">
-                            <form role="form">
-                                <div class="form-group fg-line">
-                                    <p class="f-500 c-black m-b-20">Imagem</p>
-                                    <div class="fileinput fileinput-new" data-provides="fileinput">
-                                        <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
-                                        <div>
-                                            <span class="btn btn-info btn-file">
-                                                <span class="fileinput-new">Select image</span>
-                                                <span class="fileinput-exists">Change</span>
-                                                <input type="file" name="...">
-                                            </span>
-                                            <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remove</a>
-                                        </div>
+                            <div class="form-group fg-line">
+                                <p class="f-500 c-black m-b-20">Imagem</p>
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                                    <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
+                                    <div>
+                                        <span class="btn btn-info btn-file">
+                                            <span class="fileinput-new">Selecione a imagem</span>
+                                            <span class="fileinput-exists">Alterar</span>
+                                            <input type="file" name="...">
+                                        </span>
+                                        <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Remover</a>
                                     </div>
                                 </div>
-                                
-                                <div class="form-group fg-line">
-                                    <label for="Questao">Questão</label>
-                                    <textarea class="form-control" rows="5" id="Questao" placeholder="Questão...."></textarea>
-                                </div>
-                                <div id="alternativas">
-                                    <div class="form-group fg-line">
-                                        <label for="Alternativas[0]">Alternativa</label>
-                                        <input type="text" class="form-control input-sm" id="Alternativas[0]" placeholder="Alternativa">
-                                    </div>
-                                    <div class="form-group fg-line">
-                                        <label for="Alternativas[1]">Alternativa</label>
-                                        <input type="text" class="form-control input-sm" id="Alternativas[1]" placeholder="Alternativa">
-                                    </div>
-                                </div>
-                                <div class="form-group fg-line">
-                                    <button id="addAlternativa" class="btn btn-success waves-effect">Adicionar alternativa</button>
-                                </div>
-                                <div class="form-group fg-line">
-                                    <label for="Turmas">Turmas que receberão</label>
-                                </div>
-                                <div class="form-group fg-line">
-                                    <div class="checkbox m-b-15">
-                                        <label>
-                                            <input type="checkbox" value="1">
-                                            <i class="input-helper"></i>
-                                            Turma 1
-                                        </label>
-                                    </div>
-                                    <div class="checkbox m-b-15">
-                                        <label>
-                                            <input type="checkbox" value="2">
-                                            <i class="input-helper"></i>
-                                            Turma 2
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group fg-line">
-                                    <label for="DataHoraLimite">Data de nascimento</label>
-                                    <input type="text" class="form-control input-mask" id="DataHoraLimite" data-mask="00/00/0000 00:00:00" placeholder="ex: 23/05/2014 14:50:20">
-                                </div>
+                            </div>
 
-                                <button type="submit" class="btn btn-primary btn-sm m-t-10">Enviar</button>
-                            </form>
+                            <div class="form-group fg-line">
+                                <label for="description">Enunciado</label>
+                                <textarea class="form-control" id="description"></textarea>
+                            </div>
+                            <div id="choices">
+                                <h5>Alternativas (marque a correta)</h5>
+                            </div>
+                            <div class="form-group fg-line">
+                                <button id="add-choice" onclick="addChoice()" class="btn btn-success waves-effect">Adicionar</button>
+                                <button id="remove-choice" onclick="removeChoice()" class="btn btn-danger waves-effect">Remover</button>
+                            </div>
+                            <div id="classrooms" class="form-group fg-line">
+                                <label for="classrooms">Turmas que receberão</label>
+                            </div>
+
+                            <div class="form-group fg-line">
+                                <label for="description">Limite de tempo (em horas)</label>
+                                <input type="text" data-mask="000000" class="form-control input-sm" id="limit"></input>
+                            </div>
+
+                            <div class="form-group fg-line">
+                                <label for="Questao">Feedback</label>
+                                <input type="text" class="form-control input-sm" id="feedback"></input>
+                            </div>
+
+                            <div class="form-group fg-line">
+                                <label for="Questao">Pontuação</label>
+                                <input type="text" data-mask="000000" class="form-control input-sm" id="points"></input>
+                            </div>
+
+                            <button onclick="sendQuestion()" class="btn btn-primary btn-sm m-t-10">Enviar</button>
                         </div>
                     </div>
                 </div>
             </section>
         </section>
-        
+
         <footer id="footer">
             Copyright &copy; 2017 Equipe Top
         </footer>
@@ -171,47 +152,126 @@
                 <p>Por favor, espere...</p>
             </div>
         </div>
-    
+
         <!-- Javascript Libraries -->
         <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        
+
         <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
         <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
         <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
-       
+
         <script src="vendors/bower_components/autosize/dist/autosize.min.js"></script>
-        <script src="vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
         <script src="vendors/bower_components/chosen/chosen.jquery.min.js"></script>
         <script src="vendors/fileinput/fileinput.min.js"></script>
         <script src="vendors/input-mask/input-mask.min.js"></script>
         <script src="vendors/farbtastic/farbtastic.min.js"></script>
         <script src="js/functions.js"></script>
-        <script src="js/demo.js"></script>
+        <script src="js/utils.js"></script>
 
         <script type="text/javascript">
-            var counter, limit = 5;
-            $(document).ready(function () {
-                counter = 2;
-            });
-            $("#addAlternativa").on("click", function () {
-                if (counter < limit) {
-                    counter++;
-                    var html = '<div class="form-group fg-line">' +
-                        '<label for="Alternativas[' + counter + ']">Alternativa</label>' +
-                        '<input type="text" class="form-control input-sm" id="Alternativas[' + counter + ']" placeholder="Alternativa">' +
-                        '</div>';
-                    $("#alternativas").append(html);
+            var numChoices = 0;
+            var limit = 5;
+
+            fetchUserInfo();
+            addChoice();
+            addChoice();
+            loadClassrooms();
+
+            function addChoice() {
+                $("#choices").append(`
+                    <div class="form-group fg-line">
+                        <label class="radio radio-inline">
+                            <input type="radio" name="correct-choice" value="${numChoices}">
+                            <i class="input-helper"></i>
+                        </label>
+                        <label for="choices-${numChoices}">Alternativa ${numChoices}</label>
+                        <input type="text" class="form-control input-sm" id="choices-${numChoices}" placeholder="Alternativa">
+                    </div>
+                `);
+                numChoices++;
+                updateButtons();
+            }
+
+            function removeChoice() {
+                $("#choices div:last-child").remove();
+                numChoices--;
+                updateButtons();
+            }
+
+            function updateButtons() {
+                if (numChoices === 5) {
+                    $('#add-choice').prop('disabled', true);
+                } else {
+                    $('#add-choice').prop('disabled', false);
                 }
-                else {
-                    alert("Limite de alternativas atingido!");
+
+                if (numChoices === 2) {
+                    $('#remove-choice').prop('disabled', true);
+                } else {
+                    $('#remove-choice').prop('disabled', false);
                 }
-                return false;
-            })
+            }
+
+            function loadClassrooms() {
+                var numClasses = 0;
+                $.ajax({
+                    method: 'GET',
+                    url: 'api/classrooms',
+                    success: classrooms => {
+                        classrooms.forEach(classroom => {
+                            $('#classrooms').append(`
+                                <div class="checkbox m-b-15">
+                                    <label>
+                                        <input name="classroom" type="checkbox" value="${classroom._id}">
+                                        <i class="input-helper"></i>
+                                        ${classroom.name}
+                                    </label>
+                                </div>
+                            `);
+                            numClasses++;
+                        });
+                    }
+                });
+            }
+
+            // TODO: upload image
+            function sendQuestion() {
+                var description = $('#description').val();
+                var answers = [];
+                var correctAnswer = $('input[name=correct-choice]:checked').val();
+                var classrooms = [];
+                var limit = (+$('#limit').val()) * 60 * 60 * 1000;
+                var points = +$('#points').val();
+                var feedback = $('#feedback').val();
+
+                for (i = 0; i < numChoices; i++) {
+                    answers.push($(`#choices-${i}`).val());
+                }
+
+                $("input:checkbox[name=classroom]:checked").each(function () {
+                    classrooms.push($(this).val());
+                });
+
+                $.ajax({
+                    method: 'POST',
+                    url: 'api/question',
+                    data: JSON.stringify({
+                        description,
+                        answers,
+                        correctAnswer,
+                        feedback,
+                        limit,
+                        points,
+                        classrooms
+                    }),
+                    contentType: 'application/json'
+                })
+            }
         </script>
-    
-    
+
+
     </body>
 </html>

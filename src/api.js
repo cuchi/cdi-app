@@ -1,11 +1,14 @@
 const { Router } = require('express');
 const passport = require('passport');
+const { enforceAuthentication } = require('./auth');
 const createStudent = require('./actions/createStudent');
 const getStudentToken = require('./actions/getStudentToken');
+const getUserInfo = require('./actions/getUserInfo');
+const getClassrooms = require('./actions/getClassrooms');
 const createTeacher = require('./actions/createTeacher');
 const getRanking = require('./actions/getRanking');
 
-const send501 = (req, res) => res.status(501);
+const send501 = (req, res) => res.sendStatus(501);
 
 function getRouter() {
     const router = new Router();
@@ -42,6 +45,8 @@ function getRouter() {
             .catch(next);
     });
 
+    router.use(enforceAuthentication);
+
     router.put('/classroom/:classroomId/invitations', (req, res, next) => {
         inviteStudents(req.params.classroomId, req.body, req.user)
             .then(invitations => res.status(201).json(invitations))
@@ -53,9 +58,23 @@ function getRouter() {
             .catch(next);
     });
 
-    router.get('/me', send501);
+    router.post('/question', (req, res, next) => {
+        createQuestion(req.body, req.user)
+            .then(question => res.status(201).json(question))
+            .catch(next);
+    })
 
-    router.get('/classroom', send501);
+    router.get('/me', (req, res, next) => {
+        getUserInfo(req.user)
+            .then(user => res.status(200).json(user))
+            .catch(next);
+    });
+
+    router.get('/classrooms', (req, res, next) => {
+        getClassrooms(req.user)
+            .then(classrooms => res.status(200).json(classrooms))
+            .catch(next);
+    });
 
     router.get('/ranking', (req, res, next) => {
         getRanking(req.user)

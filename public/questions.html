@@ -39,34 +39,62 @@
         <section id="main">
             <aside id="sidebar" class="sidebar c-overflow">
 
-                <ul id="main-menu" class="main-menu">
-                    <li><a href="ranking.html"><i class="zmdi zmdi-view-list"></i>Ranking</a></li>
-                    <li><a href="achievements.html"><i class="zmdi zmdi-flag"></i>Conquistas</a></li>
-                    <li><a href="questions.html"><i class="zmdi zmdi-assignment-check"></i>Questões</a></li>
+                <ul class="main-menu">
+                    <li><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
+                    <li><a href="PerfilAluno.html"><i class="zmdi zmdi-account-o"></i> Meu Perfil</a></li>
+                    <li><a href="ListaEstudantes.html"><i class="zmdi zmdi-accounts-alt"></i> Ranking</a></li>
+                    <li><a href="ConsultaAluno.html"><i class="zmdi zmdi-assignment-account"></i> Consultar Aluno</a></li>
+                    <li><a href="ConsultaQuestao.html"><i class="zmdi zmdi-view-toc"></i> Consultar Questões</a></li>
                 </ul>
             </aside>
 
             <section id="content">
                 <div class="container">
                     <div class="block-header">
-                        <h2>Ranking de alunos</h2>
+                        <h2>Questões</h2>
                     </div>
 
-                    <div class="card" style="padding-top: 20px">
+                    <div class="card">
                         <table id="data-table-command" class="table table-striped table-vmiddle">
                             <thead>
                                 <tr>
-                                    <th data-column-id="avatar" data-sortable="false">Avatar</th>
-                                    <th data-column-id="rank" data-type="numeric">Ranking</th>
-                                    <th data-column-id="name">Nome</th>
-                                    <th data-column-id="score" data-type="numeric">Pontuação</th>
-                                    <th data-column-id="commands" data-formatter="commands" data-sortable="false">Nova pontuação</th>
+                                    <th data-column-id="data">Data</th>
+									<th data-column-id="prazo">Prazo</th>
+                                    <th data-column-id="titulo">Questão</th>
+                                    <th data-column-id="commands" data-formatter="commands" data-sortable="false">Responder</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody id="questoes">
+								<tr>
+									<td>19/10/2013 11:35</td>
+									<td>19/10/2013 22:00</td>
+									<td>Quanto é 1 + 1?</td>
+								</tr>
+								<tr>
+									<td>19/10/2013 12:00</td>
+									<td>19/10/2013 22:30</td>
+									<td>Quanto é 2 + 5?</td>
+								</tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
+				<div class="modal fade" id="modalQuestion" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Responder Questão</h4>
+							</div>
+							<div class="modal-body">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-link">Responder</button>
+								<button type="button" class="btn btn-link" data-dismiss="modal">Feschar</button>
+							</div>
+						</div>
+					</div>
+				</div>
             </section>
         </section>
 
@@ -96,13 +124,11 @@
         <script src="vendors/bootgrid/jquery.bootgrid.updated.min.js"></script>
 
         <script src="js/functions.js"></script>
-        <script src="js/utils.js"></script>
+        <script src="js/demo.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function () {
-                //Command Buttons
+			$(document).ready(function () {
                 $("#data-table-command").bootgrid({
-                    ajax: false,
                     css: {
                         icon: 'zmdi icon',
                         iconColumns: 'zmdi-view-module',
@@ -112,24 +138,15 @@
                     },
                     formatters: {
                         "commands": function (column, row) {
-                            return "<button type=\"button\" class=\"btn btn-icon command-edit waves-effect waves-circle\" data-row-id=\"" + row.id + "\"><span class=\"zmdi zmdi-plus\"></span></button> ";
+                        	return "<button type=\"button\" class=\"btn btn-icon command-edit waves-effect waves-circle\" data-row-id=\"" + row.id + "\"><span class=\"zmdi zmdi-edit\"></span></button> ";
                         }
                     }
                 });
-
-                populateRanking();
-            });
-
-            fetchUserInfo();
-
-            function populateRanking() {
-                $.ajax({
-                    method: 'GET',
-                    url: 'api/ranking',
-                    success: students =>
-                        $("#data-table-command").bootgrid('append', students)
-                });
-            }
+			});
+			$(".zmdi-edit").on("click", function () {
+				$('#modalQuestion').modal('show');
+				return false;
+			})
         </script>
 
     </body>

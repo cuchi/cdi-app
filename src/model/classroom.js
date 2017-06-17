@@ -11,4 +11,4 @@ const Classroom = {
     }
 };
 
-exports.default = mongoose.model('Classroom', Classroom);
+module.exports = mongoose.model('Classroom', Classroom);

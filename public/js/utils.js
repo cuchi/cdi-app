@@ -10,3 +10,34 @@ function getUrlQuery() {
     }
     return vars;
 }
+
+function studentMenu() {
+    $('#main-menu').html(`
+        <li><a href="ranking.html"><i class="zmdi zmdi-view-list"></i>Ranking</a></li>
+        <li><a href="profile.html"><i class="zmdi zmdi-account"></i>Meu Perfil</a></li>
+        <li><a href="questions.html"><i class="zmdi zmdi-assignment-check"></i>Questões</a></li>
+    `);
+}
+
+function teacherMenu() {
+    $('#main-menu').html(`
+        <li><a href="ranking.html"><i class="zmdi zmdi-view-list"></i>Ranking</a></li>
+        <li><a href="profile.html"><i class="zmdi zmdi-account"></i>Meu Perfil</a></li>
+        <li><a href="classrooms.html"><i class="zmdi zmdi-collection-bookmark"></i>Turmas</a></li>
+    `);
+}
+
+function fetchUserInfo() {
+    $.ajax({
+        method: 'GET',
+        url: 'api/me',
+        success: me => {
+            if (me.model === 'Teacher') {
+                teacherMenu();
+            } else {
+                studentMenu();
+            }
+        },
+        error: () => window.location.replace('index.html')
+    });
+}

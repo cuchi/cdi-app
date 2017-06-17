@@ -1,6 +1,6 @@
 const crypto = require('crypto');
 const passport = require('passport');
-const { isNil, when } = require('ramda');
+const { isNil, merge, when } = require('ramda');
 const LocalStrategy = require('passport-local').Strategy;
 const Student = require('./model/student');
 const Teacher = require('./model/teacher');
@@ -56,13 +56,26 @@ function initialize() {
             ? Teacher
             : Student;
 
-        model.findById(user._id)
+        model.findById(user._id).lean()
+            .then(merge(user))
             .then(user => done(null, user));
     });
+}
+
+function enforceAuthentication(req, res, next) {
+    if (req.isAuthenticated()) {
+        if (req.user) {
+            return next();
+        }
+        req.logout();
+        req.session.destroy();
+    }
+    next(new AuthenticationError());
 }
 
 module.exports = {
     initialize,
     hashPassword,
-    verifyPassword
+    verifyPassword,
+    enforceAuthentication
 };
