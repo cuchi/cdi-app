@@ -11,6 +11,10 @@ function getUrlQuery() {
     return vars;
 }
 
+function wait300(cb) {
+    setTimeout(cb, 300);
+}
+
 function studentMenu() {
     $('#main-menu').html(`
         <li><a href="ranking.html"><i class="zmdi zmdi-view-list"></i>Ranking</a></li>
