@@ -10,11 +10,21 @@ function getClassroom(user) {
         .lean()
         .map(classroom => {
             const query = { classroom: classroom._id };
-            return all([Student.find(query).lean(), Invite.find(query).lean()])
+            return all([
+                Student.find(query)
+                    .sort({ name: 1 })
+                    .lean(),
+                Invite.find(query)
+                    .sort({ email: 1 })
+                    .lean()])
                 .spread((registered, invited) =>
                     merge(classroom, {
-                        registered: pick(['email', 'name'], registered),
-                        invited: pick(['email', 'sent'], invited) }));
+                        registered: pick(
+                            ['_id', 'email', 'name', 'score', 'phone', 'code'],
+                            registered),
+                        invited: pick(
+                            ['_id', 'email', 'sent'],
+                            invited) }));
         });
 }
 
