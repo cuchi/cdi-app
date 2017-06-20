@@ -59,54 +59,61 @@ function editStudentModal(id) {
 }
 
 function newClassroomModal() {
-    $('#new-classroom-button').click(() => {
-        var name = $('#classroom-name').val();
-
-        $.ajax({
-            method: 'POST',
-            url: `api/classroom`,
-            data: JSON.stringify({ name }),
-            contentType: 'application/json',
-            success: () => {
-                $('#new-classroom-modal').modal('hide');
-                successDialog('Turma criada!');
-            },
-            error: () => errorDialog(
-                'Oooops!!!',
-                'Este nome de turma já existe!')
-        })
-    })
+    $('#classroom-name').val('');
     $('#new-classroom-modal').modal('show');
 }
 
+var currentClassroom;
+
 function inviteStudentModal(classroomId) {
-    $('#invite-button').click(() => {
-        var email = $('#invite-email').val();
-
-        if (!validEmail(email)) {
-            errorDialog(
-                'Oooops!!!',
-                'O e-mail não é válido!');
-            return;
-        }
-
-        $.ajax({
-            method: 'PUT',
-            url: `api/classroom/${classroomId}/invitations`,
-            data: JSON.stringify({ email }),
-            contentType: 'application/json',
-            success: () => {
-                $('#invite-modal').modal('hide');
-                successDialog(
-                    'Convite enviado!',
-                    'Aguarde o aluno aceitar e criar a conta.')
-            },
-            error: () => errorDialog(
-                'Oooops!!!',
-                'Este e-mail já está em uso!')
-        })
-    })
+    $('#invite-email').val('');
     $('#invite-modal').modal('show');
+    currentClassroom = classroomId;
+}
+
+function inviteStudent() {
+    var email = $('#invite-email').val();
+
+    if (!validEmail(email)) {
+        errorDialog(
+            'Oooops!!!',
+            'O e-mail não é válido!');
+        return;
+    }
+
+    $.ajax({
+        method: 'PUT',
+        url: `api/classroom/${currentClassroom}/invitations`,
+        data: JSON.stringify({ email }),
+        contentType: 'application/json',
+        success: () => {
+            $('#invite-modal').modal('hide');
+            successDialog(
+                'Convite enviado!',
+                'Aguarde o aluno aceitar e criar a conta.')
+        },
+        error: () => errorDialog(
+            'Oooops!!!',
+            'Este e-mail já está em uso!')
+    });
+}
+
+function newClassroom() {
+    var name = $('#classroom-name').val();
+
+    $.ajax({
+        method: 'POST',
+        url: `api/classroom`,
+        data: JSON.stringify({ name }),
+        contentType: 'application/json',
+        success: () => {
+            $('#new-classroom-modal').modal('hide');
+            successDialog('Turma criada!');
+        },
+        error: () => errorDialog(
+            'Oooops!!!',
+            'Este nome de turma já existe!')
+    });
 }
 
 function getStudentsRows(classroom) {

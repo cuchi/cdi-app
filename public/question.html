@@ -38,20 +38,26 @@
 
         <section id="main">
             <aside id="sidebar" class="sidebar c-overflow">
-
                 <ul id="main-menu" class="main-menu"></ul>
             </aside>
 
             <section id="content">
                 <div id="main" class="container">
                     <div class="block-header">
-                        <h2>
-                            <button onclick="newClassroomModal()" class="btn bgm-green waves-effect waves-button waves-float">
-                                <i class="zmdi zmdi-collection-plus"></i> Nova turma
-                            </button>
-                        </h2>
+
                     </div>
-                    <div id="classrooms"></div>
+                    <div id="classrooms">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 id="no-questions-msg" class="text-center">
+                                    Olá! você não possui questões para responder no momento!
+                                </h2>
+                            </div>
+                            <div class="card-body card-padding">
+                                <p id="descriptiom">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </section>
@@ -71,46 +77,6 @@
             </div>
         </div>
 
-        <div class="modal fade" id="invite-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Convidar aluno</h4>
-                    </div>
-                    <div if="invite-modal-body" class="modal-body">
-                        <div class="form-group fg-line">
-                            <label for="email">E-mail</label>
-                            <input type="email" class="form-control input-sm" id="invite-email" placeholder="E-mail">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn waves-effect waves-button waves-float" data-dismiss="modal">Cancelar</button>
-                        <button onclick="inviteStudent()" type="button" class="btn bgm-green waves-effect waves-button waves-float">Convidar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="new-classroom-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Nova turma</h4>
-                    </div>
-                    <div if="invite-modal-body" class="modal-body">
-                        <div class="form-group fg-line">
-                            <label for="email">Nome</label>
-                            <input type="email" class="form-control input-sm" id="classroom-name" placeholder="Nome da turma">
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn waves-effect waves-button waves-float" data-dismiss="modal">Cancelar</button>
-                        <button onclick="newClassroom()" type="button" class="btn bgm-green waves-effect waves-button waves-float">Criar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Javascript Libraries -->
         <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -122,7 +88,65 @@
         <script src="js/functions.js"></script>
         <script src="js/utils.js"></script>
 
-        <script src="js/classrooms.js"></script>
+        <script type="text/javascript">
+            fetchUserInfo();
+
+            var justCameIn = true;
+
+            function loadQuestion(question) {
+                justCameIn = false;
+
+
+            }
+
+            function getQuestion(questionId) {
+                $ajax({
+                    method: 'PUT',
+                    url: `/api/questions/${questionId}/timer`,
+                    success: loadQuestion
+                });
+            }
+
+            function askBeforeTimer(question) {
+                swal({
+                    title: 'Olá',
+                    text: `Você têm uma questão para responder, deseja iniciar o timer?
+                    A questão vale ${question.points} pontos e seu tempo é de ${question.limit} minutos!`,
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#DD6B55',
+                    confirmButtonText: 'Sim',
+                    cancelButtonText: 'Voltar para o ranking.'
+                }, (accepted) => {
+                    if (accepted) {
+                        getQuestion(question._id);
+                    } else {
+                        window.location.replace('ranking.html');
+                    }
+                });
+            }
+
+            function fetchQuestions() {
+                $.ajax({
+                    method: 'GET',
+                    url: 'api/questions',
+                    success: questions => {
+                        if (questions.length === 0) {
+                            return;
+                        }
+                        $('#no-questions-msg').hide();
+
+                        if (justCameIn && !question[0].startDate) {
+                            askBeforeTimer(question[0]);
+                            return;
+                        }
+
+                        getQuestion(question[0]._id);
+                    }
+                });
+            }
+
+        </script>
 
     </body>
 </html>
