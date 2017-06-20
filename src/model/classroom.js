@@ -11,4 +11,8 @@ const Classroom = {
     }
 };
 
+const indexes = [
+    [{ teacher: 1, name: 1 }, { unique: true }]
+];
+
 module.exports = mongoose.model('Classroom', Classroom);

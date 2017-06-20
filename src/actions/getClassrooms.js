@@ -1,3 +1,5 @@
+const { all, resolve } = require('bluebird');
+const { map, pick, merge } = require('ramda');
 const Student = require('../model/student');
 const Invite = require('../model/invite');
 const Classroom = require('../model/classroom');
@@ -6,8 +8,8 @@ const { assertTeacher } = require('../utils');
 function getClassroom(user) {
     assertTeacher(user);
 
-    return Classroom.find({ teacher: user._id })
-        .lean()
+    return resolve(Classroom.find({ teacher: user._id })
+        .lean())
         .map(classroom => {
             const query = { classroom: classroom._id };
             return all([
@@ -19,11 +21,11 @@ function getClassroom(user) {
                     .lean()])
                 .spread((registered, invited) =>
                     merge(classroom, {
-                        registered: pick(
-                            ['_id', 'email', 'name', 'score', 'phone', 'code'],
+                        registered: map(pick(
+                            ['_id', 'email', 'name', 'score', 'phone', 'code']),
                             registered),
-                        invited: pick(
-                            ['_id', 'email', 'sent'],
+                        invited: map(pick(
+                            ['_id', 'email', 'sent']),
                             invited) }));
         });
 }

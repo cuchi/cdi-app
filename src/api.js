@@ -8,7 +8,7 @@ const patchUserInfo = require('./actions/patchUserInfo');
 const getClassrooms = require('./actions/getClassrooms');
 const createTeacher = require('./actions/createTeacher');
 const createClassroom = require('./actions/createClassroom');
-const inviteStudents = require('./actions/inviteStudents');
+const inviteStudent = require('./actions/inviteStudent');
 const getRanking = require('./actions/getRanking');
 
 const send501 = (req, res) => res.sendStatus(501);
@@ -57,8 +57,8 @@ function getRouter() {
     });
 
     router.put('/classroom/:classroomId/invitations', (req, res, next) => {
-        inviteStudents(req.params.classroomId, req.body, req.user)
-            .then(invitations => res.status(201).json(invitations))
+        inviteStudent(req.params.classroomId, req.body, req.user)
+            .then(invitation => res.status(201).json(invitation))
             .catch(next);
     });
 
@@ -88,7 +88,9 @@ function getRouter() {
 
     router.get('/classrooms', (req, res, next) => {
         getClassrooms(req.user)
-            .then(classrooms => res.status(200).json(classrooms))
+            .then(classrooms => {
+                res.status(200).json(classrooms)
+            })
             .catch(next);
     });
 

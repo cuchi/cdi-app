@@ -45,7 +45,11 @@
             <section id="content">
                 <div id="main" class="container">
                     <div class="block-header">
-                        <h2>Turmas</h2>
+                        <h2>
+                            <button onclick="newClassroomModal()" class="btn bgm-green waves-effect waves-button waves-float">
+                                <i class="zmdi zmdi-collection-plus"></i> Nova turma
+                            </button>
+                        </h2>
                     </div>
                     <div id="classrooms"></div>
                 </div>
@@ -87,6 +91,26 @@
             </div>
         </div>
 
+        <div class="modal fade" id="new-classroom-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Nova turma</h4>
+                    </div>
+                    <div if="invite-modal-body" class="modal-body">
+                        <div class="form-group fg-line">
+                            <label for="email">Nome</label>
+                            <input type="email" class="form-control input-sm" id="classroom-name" placeholder="Nome da turma">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn waves-effect waves-button waves-float" data-dismiss="modal">Cancelar</button>
+                        <button id="new-classroom-button" type="button" class="btn bgm-green waves-effect waves-button waves-float">Criar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Javascript Libraries -->
         <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
         <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -98,247 +122,7 @@
         <script src="js/functions.js"></script>
         <script src="js/utils.js"></script>
 
-        <script type="text/javascript">
-            fetchUserInfo();
-
-            populateClassrooms([{
-                name: 'Turma topzera',
-                registered: [{
-                    _id: 1,
-                    name: 'Paulo',
-                    code: 123456,
-                    email: 'paulo.cuchi@gmail.com',
-                    score: 666,
-                    phone: 125464545665
-                },{
-                    _id: 2,
-                    name: 'Paulo',
-                    code: 123456,
-                    email: 'paulo.cuchi@gmail.com',
-                    score: 666,
-                    phone: 125464545665
-                },{
-                    _id: 3,
-                    name: 'Paulo',
-                    code: 123456,
-                    email: 'paulo.cuchi@gmail.com',
-                    score: 666,
-                    phone: 125464545665
-                },{
-                    _id: 4,
-                    name: 'Paulo',
-                    code: 123456,
-                    email: 'paulo.cuchi@gmail.com',
-                    score: 666,
-                    phone: 125464545665
-                },{
-                    _id: 5,
-                    name: 'Paulo',
-                    code: 123456,
-                    email: 'paulo.cuchi@gmail.com',
-                    score: 666,
-                    phone: 125464545665
-                },{
-                    _id: 6,
-                    name: 'Paulo',
-                    code: 123456,
-                    email: 'paulo.cuchi@gmail.com',
-                    score: 666,
-                    phone: 125464545665
-                }],
-                invited: [{
-                    _id: 1,
-                    email: 'paulo.cuchi@gmail.com',
-                    sent: new Date().toString(),
-                }]
-            },{
-                name: 'Turma topzera2',
-                registered: [{
-                    name: 'Paulo',
-                    code: 123456,
-                    email: 'paulo.cuchi@gmail.com',
-                    score: 666,
-                    phone: 125464545665
-                },{
-                    name: 'Paulo',
-                    code: 123456,
-                    email: 'paulo.cuchi@gmail.com',
-                    score: 666,
-                    phone: 125464545665
-                },{
-                    name: 'Paulo',
-                    code: 123456,
-                    email: 'paulo.cuchi@gmail.com',
-                    score: 666,
-                    phone: 125464545665
-                },{
-                    name: 'Paulo',
-                    code: 123456,
-                    email: 'paulo.cuchi@gmail.com',
-                    score: 666,
-                    phone: 125464545665
-                },{
-                    name: 'Paulo',
-                    code: 123456,
-                    email: 'paulo.cuchi@gmail.com',
-                    score: 666,
-                    phone: 125464545665
-                },{
-                    name: 'Paulo',
-                    code: 123456,
-                    email: 'paulo.cuchi@gmail.com',
-                    score: 666,
-                    phone: 125464545665
-                }]
-            }])
-
-            function removeStudentDialog(id) {
-                swal({
-                    title: 'Tem certeza?',
-                    text: 'Os dados do aluno serão apagados para sempre!',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Sim',
-                    cancelButtonText: 'Não'
-                }, () => wait300(() => $.ajax({
-                    method: 'DELETE',
-                    url: `api/student/${id}`,
-                    error: () => swal({
-                        title: 'Removido!',
-                        text: 'O aluno foi removido do sistema.',
-                        type: 'success'
-                    }, fetchClassrooms)
-                })));
-            }
-
-
-            function removeInviteDialog(id) {
-                swal({
-                    title: 'Tem certeza?',
-                    text: 'O aluno não poderá mais usar esse convite, você poderá convidar de novo se quiser.',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#DD6B55',
-                    confirmButtonText: 'Sim',
-                    cancelButtonText: 'Não'
-                }, () => wait300(() => $.ajax({
-                    method: 'DELETE',
-                    url: `api/invite/${id}`,
-                    error: () => swal({
-                        title: 'Removido!',
-                        text: 'O convite foi removido do sistema.',
-                        type: 'success'
-                    }, fetchClassrooms)
-                })));
-            }
-
-            function editStudentModal(id) {
-
-            }
-
-            function inviteStudentModal(classroomId) {
-
-                $('#invite-button').click(() => {
-                    // TODO: more gambiarra
-                })
-                $('#invite-modal').modal('show');
-            }
-
-            function getStudentsRows(classroom) {
-                return (classroom.registered || [])
-                    .map(student => `
-                      <tr>
-                        <td>${student.name}</td>
-                        <td>${student.code}</td>
-                        <td>${student.email}</td>
-                        <td>${student.score}</td>
-                        <td>${student.phone}</td>
-                        <td>
-                          <button onclick="removeStudentDialog(${student._id})" class="btn bgm-red waves-effect waves-button waves-float">
-                            <i class="zmdi zmdi-close"></i>
-                          </button>
-                        </td>
-                        <td>
-                          <button onclick="editStudent(${student._id})" class="btn bgm-orange waves-effect waves-button waves-float">
-                            <i class="zmdi zmdi-edit"></i>
-                          </button>
-                        </td>
-                      </tr>
-                    `).join('\n');
-            }
-
-            function getInvitedRows(classroom) {
-                return (classroom.invited || [])
-                    .map(invite => `
-                        <tr>
-                          <td>${invite.email}</td>
-                          <td>${invite.sent}</td>
-                          <td>
-                            <button onclick="removeInviteDialog(${invite._id})" class="btn bgm-red waves-effect waves-button waves-float">
-                              <i class="zmdi zmdi-close"></i>
-                            </button>
-                          </td>
-                        </tr>
-                    `).join('\n');
-            }
-
-            function populateClassrooms(classrooms) {
-                $('#classrooms').html(classrooms.map(classroom => `
-                    <div class="card">
-                      <div class="card-header">
-                        <h1>${classroom.name}</h1>
-                        <h2>Registrados</h2>
-                      </div>
-                      <div class="card-body table-responsive">
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th>Nome</th>
-                              <th>Matrícula</th>
-                              <th>E-mail</th>
-                              <th>Pontuação</th>
-                              <th>Fone</th>
-                              <th></th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            ${getStudentsRows(classroom)}
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="card-header">
-                        <button onclick="inviteStudentModal(${classroom._id})" class="btn bgm-cyan waves-effect waves-button waves-float">
-                          <i class="zmdi zmdi-account-add"></i> Convidar Aluno
-                        </button>
-                      </div>
-                      <div class="card-body table-responsive">
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th>E-mail</th>
-                              <th>Convite enviado em:</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            ${getInvitedRows(classroom)}
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-                `).join('\n'));
-            }
-
-            function fetchClassrooms() {
-                $.ajax({
-                    method: 'GET',
-                    url: 'api/classrooms',
-                    success: populateClassrooms
-                });
-            }
-        </script>
+        <script src="js/classrooms.js"></script>
 
     </body>
 </html>

@@ -3,7 +3,7 @@ const crypto = require('crypto');
 
 const fail = err => { throw err };
 
-const isTeacher = user => user.model === 'Teacher';
+const isTeacher = user => user.model == 'Teacher';
 
 function assertStudent(user) {
     if (isTeacher(user)) throw new PermissionError('Not a student!');

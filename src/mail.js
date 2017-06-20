@@ -1,4 +1,5 @@
 const sendgrid = require('sendgrid');
+const { resolve } = require('bluebird');
 const config = require('config');
 
 const mailer = sendgrid(config.sendgrid.key);
@@ -29,4 +30,6 @@ function sendEmail(to, subject, content) {
         });
 }
 
-module.exports = sendEmail;
+module.exports = config.sendgrid.key
+    ? sendEmail
+    : () => resolve(); // Noop when the key is not set
