@@ -53,8 +53,10 @@
                                     Olá! você não possui questões para responder no momento!
                                 </h2>
                             </div>
-                            <div class="card-body card-padding">
-                                <p id="descriptiom">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            <div id="question-content" class="card-body card-padding">
+                                <p id="description"></p>
+                                <div id="question-img"></div>
+                                <div id="answers"></div>
                             </div>
                         </div>
                     </div>
@@ -95,8 +97,13 @@
 
             function loadQuestion(question) {
                 justCameIn = false;
+                $('#description').text(question.description);
+                if (question.picture) {
+                    $('#question-img').html(`<img src="${question.picture}">`);
+                }
+                $('#answers').html(question.answers.map(answer => `
 
-
+                `));
             }
 
             function getQuestion(questionId) {
