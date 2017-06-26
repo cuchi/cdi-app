@@ -54,9 +54,11 @@
                                 </h2>
                             </div>
                             <div id="question-content" class="card-body card-padding">
-                                <p id="description"></p>
+                                <h3>Questão</h3>
+                                <blockquote><p id="description"></p></blockquote>
                                 <div id="question-img"></div>
-                                <div id="answers"></div>
+                                <div id="answers" class="input-group"></div>
+                                <button class="btn btn-primary m-t-10" onclick="answerQuestion()"/>Responder</button>
                             </div>
                         </div>
                     </div>
@@ -91,23 +93,63 @@
         <script src="js/utils.js"></script>
 
         <script type="text/javascript">
-            fetchUserInfo();
-
             var justCameIn = true;
+            var currentQuestion;
+
+            fetchUserInfo();
+            fetchQuestions();
+
+            function answerQuestion() {
+                var selectedAnswer = $('input[name=answer]:checked').val();
+
+                console.log(selectedAnswer)
+                $.ajax({
+                    method: 'POST',
+                    url: `api/questions/${currentQuestion}/answer`,
+                    data: JSON.stringify({ answer: selectedAnswer }),
+                    contentType: 'application/json',
+                    success: feedback => {
+                        var [title, type] = feedback.successful
+                            ? ['Você acertou!', 'success']
+                            : ['Você errou...', 'error'];
+
+                        swal(
+                            { text: feedback.message, title, type },
+                            fetchQuestions)
+                    },
+                    error: () => {
+                        swal({
+                            title: 'Oooops!!!',
+                            text: 'Seu tempo acabou!',
+                            type: 'error'
+                        }, fetchQuestions);
+                    }
+                });
+            }
 
             function loadQuestion(question) {
                 justCameIn = false;
+                currentQuestion = question._id;
+
                 $('#description').text(question.description);
                 if (question.picture) {
-                    $('#question-img').html(`<img src="${question.picture}">`);
+                    $('#question-img')
+                        .html(`<img src="${question.picture}" class="img-responsive">`);
                 }
-                $('#answers').html(question.answers.map(answer => `
 
+                $('#answers').html(question.answers.map((answer, index) => `
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="answer" value="${index}" ${index === 0 ? 'checked' : ''}>
+                            <i class="input-helper"></i>
+                            ${answer}
+                        </label>
+                    </div>
                 `));
             }
 
-            function getQuestion(questionId) {
-                $ajax({
+            function startQuestion(questionId) {
+                $.ajax({
                     method: 'PUT',
                     url: `/api/questions/${questionId}/timer`,
                     success: loadQuestion
@@ -126,7 +168,7 @@
                     cancelButtonText: 'Voltar para o ranking.'
                 }, (accepted) => {
                     if (accepted) {
-                        getQuestion(question._id);
+                        startQuestion(question._id);
                     } else {
                         window.location.replace('ranking.html');
                     }
@@ -139,16 +181,17 @@
                     url: 'api/questions',
                     success: questions => {
                         if (questions.length === 0) {
+                            $('#no-questions-msg').show();
                             return;
                         }
+
                         $('#no-questions-msg').hide();
-
-                        if (justCameIn && !question[0].startDate) {
-                            askBeforeTimer(question[0]);
+                        if (justCameIn && !questions[0].startDate) {
+                            askBeforeTimer(questions[0]);
                             return;
                         }
 
-                        getQuestion(question[0]._id);
+                        startQuestion(questions[0]._id);
                     }
                 });
             }

@@ -20,7 +20,8 @@ const Question = new mongoose.Schema({
         type: Number,
         required: true
     },
-    feedback: String,
+    positiveFeedback: String,
+    negativeFeedback: String,
     limit: Number,
     points: {
         type: Number,
@@ -28,6 +29,11 @@ const Question = new mongoose.Schema({
     },
     classrooms: {
         type: [Classroom],
+        required: true
+    },
+    teacher: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Teacher',
         required: true
     }
 });

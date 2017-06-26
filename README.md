@@ -18,6 +18,7 @@ e _Desenvolvimento de Aplicações Web_ da UDESC.
     - [ ] Rotas pra professor
         - [x] `POST /teacher/session`
         - [ ] `POST /question`
+        - [ ] `GET /questions`
         - [x] `POST /classroom`
         - [x] `GET /classrooms`
         - [x] `POST /classrooms/:classroomId/invitations`

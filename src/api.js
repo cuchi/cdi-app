@@ -6,6 +6,9 @@ const getStudentToken = require('./actions/getStudentToken');
 const getUserInfo = require('./actions/getUserInfo');
 const patchUserInfo = require('./actions/patchUserInfo');
 const getClassrooms = require('./actions/getClassrooms');
+const getQuestions = require('./actions/getQuestions');
+const startQuestion = require('./actions/startQuestion');
+const answerQuestion = require('./actions/answerQuestion');
 const createTeacher = require('./actions/createTeacher');
 const createClassroom = require('./actions/createClassroom');
 const inviteStudent = require('./actions/inviteStudent');
@@ -65,6 +68,24 @@ function getRouter() {
     router.post('/classroom', (req, res, next) => {
         createClassroom(req.body, req.user)
             .then(classroom => res.status(201).json(classroom))
+            .catch(next);
+    });
+
+    router.get('/questions', (req, res, next) => {
+        getQuestions(req.user)
+            .then(questions => res.status(200).json(questions))
+            .catch(next);
+    })
+
+    router.put('/questions/:questionId/timer', (req, res, next) => {
+        startQuestion(req.user, req.params.questionId)
+            .then(questionInfo => res.status(200).send(questionInfo))
+            .catch(next);
+    });
+
+    router.post('/questions/:questionId/answer', (req, res, next) => {
+        answerQuestion(req.user, req.params.questionId, req.body)
+            .then(feedback => res.status(201).send(feedback))
             .catch(next);
     });
 

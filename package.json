@@ -26,6 +26,7 @@
     "express": "^4.15.2",
     "express-session": "^1.15.3",
     "helmet": "^3.6.0",
+    "moment": "^2.18.1",
     "mongoose": "^4.10.0",
     "morgan": "^1.8.1",
     "passport": "^0.3.2",
