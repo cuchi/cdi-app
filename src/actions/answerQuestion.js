@@ -1,9 +1,9 @@
-const { resolve } = require('bluebird');
+const { all, resolve } = require('bluebird');
 const { isNil, when, propOr } = require('ramda');
 const Question = require('../model/question');
 const Answer = require('../model/answer');
 const Student = require('../model/student');
-const { assertStudent } = require('../utils');
+const { assertStudent, fail } = require('../utils');
 const { NotFoundError } = require('../errors');
 
 function incScore(studentId, points) {
@@ -19,6 +19,10 @@ function answerQuestion(user, questionId, { choice }) {
         .then(when(isNil, () =>
             fail(new NotFoundError('This answer does not exist!'))))
         .then(answer => all([answer, Question.findById(questionId)]))
+        .tap(([answer, question]) => {
+            console.log(Number(choice))
+            console.log(question.correctAnswer)
+        })
         .spread((answer, question) => resolve(
             Number(choice) === question.correctAnswer
                 ? { successful: true, message: question.positiveFeedback }

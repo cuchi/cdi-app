@@ -1,4 +1,4 @@
-const { resolve } = require('bluebird');
+const { all, resolve } = require('bluebird');
 const moment = require('moment');
 const Question = require('../model/question');
 const Student = require('../model/student');
@@ -23,7 +23,7 @@ function isDone(answer) {
 function getQuestionsForStudent(studentId) {
     return resolve(Student.findById(studentId))
         .then(student =>
-            Question.find({ classroom: student.classroom }).lean())
+            Question.find({ classrooms: student.classroom }).lean())
         .map(question => {
             const query = { student: studentId, question: question._id };
             return all([question, Answer.findOne(query)])

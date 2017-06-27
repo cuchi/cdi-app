@@ -8,7 +8,7 @@ const { NotFoundError } = require('../errors');
 
 const startTimer = curry((studentId, question) => {
     return resolve(Answer
-        .find({ student: studentId, question: question._id }))
+        .findOne({ student: studentId, question: question._id }))
         .then(when(isNil, () =>
             new Answer({
                 student: studentId,
@@ -27,7 +27,7 @@ function startQuestion(user, questionId) {
             .lean())
         .then(when(isNil, () =>
             fail(new NotFoundError('This question does not exist!'))))
-        .tap(startTimer)
+        .tap(startTimer(user._id))
         .then(pick(['_id', 'description', 'answers', 'limit', 'points']));
 }
 

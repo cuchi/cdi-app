@@ -13,9 +13,11 @@ function validate(question) {
     if (question.classrooms.length === 0) {
         throw new ValidationError('Empty classroom list!');
     }
+    return question;
 }
 
 function save(question) {
+    console.log(question)
     return new Question(question).save();
 }
 
@@ -46,3 +48,5 @@ function createQuestion(questionInfo, user) {
 
     return saveQuestion(questionInfo);
 }
+
+module.exports = createQuestion;

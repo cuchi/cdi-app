@@ -8,12 +8,12 @@ const requiredString = {
 };
 
 const collections = [
-    'answers',
-    'classrooms',
-    'invites',
-    'questions',
-    'students',
-    'teachers'
+    // 'answers',
+    // 'classrooms',
+    // 'invites',
+    // 'questions',
+    // 'students',
+    // 'teachers'
 ];
 
 function connect() {
