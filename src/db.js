@@ -7,13 +7,26 @@ const requiredString = {
     required: true
 };
 
+const collections = [
+    'answers',
+    'classrooms',
+    'invites',
+    'questions',
+    'students',
+    'teachers'
+];
+
 function connect() {
     const { url } = config.mongodb;
 
     mongoose.Promise = Bluebird;
 
     return mongoose.connect(url)
-        .then(() => console.log(`Connected successfuly to ${url}`))
+        .then(() => {
+            collections.forEach(name =>
+                mongoose.connection.db.collection(name).deleteMany({}))
+            console.log(`Connected successfuly to ${url}`)
+        })
         .catch(err => {
             console.error(`Failed to connect to ${url}`);
             throw err;
