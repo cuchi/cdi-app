@@ -11,6 +11,7 @@ const startQuestion = require('./actions/startQuestion');
 const answerQuestion = require('./actions/answerQuestion');
 const createTeacher = require('./actions/createTeacher');
 const createClassroom = require('./actions/createClassroom');
+const createQuestion = require('./actions/createQuestion');
 const inviteStudent = require('./actions/inviteStudent');
 const getRanking = require('./actions/getRanking');
 

@@ -117,17 +117,22 @@
                             </div>
 
                             <div class="form-group fg-line">
-                                <label for="description">Limite de tempo (em horas)</label>
+                                <label for="description">Limite de tempo (em minutos)</label>
                                 <input type="text" data-mask="000000" class="form-control input-sm" id="limit"></input>
                             </div>
 
                             <div class="form-group fg-line">
-                                <label for="Questao">Feedback</label>
-                                <input type="text" class="form-control input-sm" id="feedback"></input>
+                                <label for="positive-feedback">Feedback positivo</label>
+                                <input type="text" class="form-control input-sm" id="positive-feedback"></input>
                             </div>
 
                             <div class="form-group fg-line">
-                                <label for="Questao">Pontuação</label>
+                                <label for="negative-feedback">Feedback negativo</label>
+                                <input type="text" class="form-control input-sm" id="negative-feedback"></input>
+                            </div>
+
+                            <div class="form-group fg-line">
+                                <label for="points">Pontuação</label>
                                 <input type="text" data-mask="000000" class="form-control input-sm" id="points"></input>
                             </div>
 
@@ -245,7 +250,8 @@
                 var classrooms = [];
                 var limit = (+$('#limit').val()) * 60 * 60 * 1000;
                 var points = +$('#points').val();
-                var feedback = $('#feedback').val();
+                var positiveFeedback = $('#positive-feedback').val();
+                var negativeFeedback = $('#negative-feedback').val();
 
                 for (i = 0; i < numChoices; i++) {
                     answers.push($(`#choices-${i}`).val());
@@ -262,7 +268,8 @@
                         description,
                         answers,
                         correctAnswer,
-                        feedback,
+                        positiveFeedback,
+                        negativeFeedback,
                         limit,
                         points,
                         classrooms
