@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { resolve } = require('bluebird');
 const { map, pipe, prop } = require('ramda');
 const Student = require('../model/student');
 const Teacher = require('../model/teacher');

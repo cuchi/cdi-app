@@ -274,11 +274,12 @@
                         points,
                         classrooms
                     }),
-                    contentType: 'application/json'
+                    contentType: 'application/json',
+                    success: () =>
+                        window.location.replace('ranking.html')
                 })
             }
         </script>
-
 
     </body>
 </html>
