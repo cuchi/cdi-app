@@ -1,6 +1,10 @@
+const mongoose = require('mongoose');
+const { map, pipe, prop } = require('ramda');
 const Student = require('../model/student');
 const Teacher = require('../model/teacher');
 const Classroom = require('../model/classroom');
+
+const ObjectId = mongoose.Types.ObjectId;
 
 function getRankingForStudent(user) {
     return Student.aggregate([
@@ -10,9 +14,17 @@ function getRankingForStudent(user) {
 }
 
 function getRankingForTeacher(user) {
-    return Teacher.findById(user._id)
-        .lean()
-        .then(teacher => //aaaa)
+    return resolve(Teacher.findById(user._id)
+        .lean())
+        .then(teacher =>
+            Classroom.find({ teacher: user._id }).lean())
+        .then(classrooms => Student.aggregate([
+            { $match: { classroom: {
+                $in: map(
+                    pipe(prop('_id'), ObjectId),
+                    classrooms) } } },
+            { $project: { name: true, code: true, score: true } },
+            { $sort: { score: -1 } }]))
 }
 
 function getRanking(user) {
