@@ -10,7 +10,7 @@ const ObjectId = mongoose.Types.ObjectId;
 function getRankingForStudent(user) {
     return Student.aggregate([
         { $match: { classroom: user.classroom } },
-        { $project: { name: true, code: true, score: true } },
+        { $project: { name: true, code: true, score: true, money: true } },
         { $sort: { score: -1 } }]);
 }
 
@@ -24,7 +24,7 @@ function getRankingForTeacher(user) {
                 $in: map(
                     pipe(prop('_id'), ObjectId),
                     classrooms) } } },
-            { $project: { name: true, code: true, score: true } },
+            { $project: { name: true, code: true, score: true, money: true } },
             { $sort: { score: -1 } }]))
 }
 

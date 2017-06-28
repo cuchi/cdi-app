@@ -1,5 +1,6 @@
 const { all, resolve } = require('bluebird');
 const moment = require('moment');
+const { filter, complement, isNil } = require('ramda');
 const Question = require('../model/question');
 const Student = require('../model/student');
 const Answer = require('../model/answer');
@@ -17,7 +18,7 @@ function limitExceeded(question, answer) {
 }
 
 function isDone(answer) {
-    return answer && answer.choice;
+    return answer && answer.choice != null;
 }
 
 function getQuestionsForStudent(studentId) {
@@ -41,7 +42,8 @@ function getQuestionsForStudent(studentId) {
                             : undefined,
                     };
                 });
-        });
+        })
+        .then(filter(complement(isNil)));
 }
 
 function getQuestions(user) {

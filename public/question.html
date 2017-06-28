@@ -102,7 +102,6 @@
             function answerQuestion() {
                 var selectedAnswer = $('input[name=answer]:checked').val();
 
-                console.log(selectedAnswer)
                 $.ajax({
                     method: 'POST',
                     url: `api/questions/${currentQuestion}/answer`,
@@ -182,6 +181,7 @@
                     success: questions => {
                         if (questions.length === 0) {
                             $('#no-questions-msg').show();
+                            $('#question-content').hide();
                             return;
                         }
 

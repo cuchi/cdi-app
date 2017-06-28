@@ -1,5 +1,6 @@
 const { all, resolve } = require('bluebird');
 const { isNil, when, propOr } = require('ramda');
+const moment = require('moment');
 const Question = require('../model/question');
 const Answer = require('../model/answer');
 const Student = require('../model/student');
@@ -23,6 +24,11 @@ function answerQuestion(user, questionId, { answer: choice }) {
         .then(when(isNil, () =>
             fail(new NotFoundError('This answer does not exist!'))))
         .then(answer => all([answer, Question.findById(questionId)]))
+        .tap(([question, answer]) => {
+            if (moment().diff(moment(answer.startDate)) >= question.limit) {
+                throw new ValidationError('Time limit exceeded!');
+            }
+        })
         .spread((answer, question) => resolve(
             Number(choice) === question.correctAnswer
                 ? { successful: true, message: question.positiveFeedback }

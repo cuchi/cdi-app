@@ -11,13 +11,16 @@ const Student = new mongoose.Schema({
         type: String,
         enum: ['m', 'f', 'o']
     },
-    birthDate: String,
     classroom: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Classroom',
         required: true
     },
     score: {
+        type: Number,
+        default: 0
+    },
+    money: {
         type: Number,
         default: 0
     }

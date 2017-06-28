@@ -106,11 +106,18 @@
             fetchUserInfo();
 
             function populateRanking() {
+                var rank = 1;
                 $.ajax({
                     method: 'GET',
                     url: 'api/ranking',
                     success: students =>
-                        $("#data-table-command").bootgrid('append', students)
+                        $("#data-table-command")
+                            .bootgrid('append', students
+                                .map(s => {
+                                    s.money = Math.floor(s.score / 100);
+                                    s.rank = rank++;
+                                    return s;
+                                }))
                 });
             }
         </script>
