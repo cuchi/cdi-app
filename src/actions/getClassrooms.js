@@ -25,7 +25,7 @@ function getClassroom(user) {
                             ['_id', 'email', 'name', 'score', 'phone', 'code']),
                             registered),
                         invited: map(pick(
-                            ['_id', 'email', 'sent']),
+                            ['_id', 'email', 'sent', 'token']),
                             invited) }));
         });
 }

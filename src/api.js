@@ -13,6 +13,8 @@ const createTeacher = require('./actions/createTeacher');
 const createClassroom = require('./actions/createClassroom');
 const createQuestion = require('./actions/createQuestion');
 const inviteStudent = require('./actions/inviteStudent');
+const deleteStudent = require('./actions/deleteStudent');
+const deleteInvite = require('./actions/deleteInvite');
 const getRanking = require('./actions/getRanking');
 
 const send501 = (req, res) => res.sendStatus(501);
@@ -122,7 +124,17 @@ function getRouter() {
             .catch(next);
     });
 
-    router.post('/question/:questionId', send501);
+    router.delete('/students/:studentId', (req, res, next) => {
+        deleteStudent(req.params.studentId, req.user)
+            .then(() => res.sendStatus(200))
+            .catch(next);
+    });
+
+    router.delete('/invites/:token', (req, res, next) => {
+        deleteInvite(req.params.token, req.user)
+            .then(() => res.sendStatus(200))
+            .catch(next);
+    });
 
     return router;
 }

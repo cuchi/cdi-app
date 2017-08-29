@@ -19,7 +19,7 @@ function studentMenu() {
     $('#main-menu').html(`
         <li><a href="ranking.html"><i class="zmdi zmdi-view-list"></i>Ranking</a></li>
         <li><a href="profile.html"><i class="zmdi zmdi-account"></i>Meu Perfil</a></li>
-        <li><a href="questions.html"><i class="zmdi zmdi-assignment-check"></i>Questões</a></li>
+        <li><a href="question.html"><i class="zmdi zmdi-assignment-check"></i>Responder Questão</a></li>
         <li><a href="#" onclick="logout()"><i class="zmdi zmdi-sign-in"></i>Sair</a></li>
     `);
 }
@@ -29,7 +29,7 @@ function teacherMenu() {
         <li><a href="ranking.html"><i class="zmdi zmdi-view-list"></i>Ranking</a></li>
         <li><a href="profile.html"><i class="zmdi zmdi-account"></i>Meu Perfil</a></li>
         <li><a href="classrooms.html"><i class="zmdi zmdi-collection-bookmark"></i>Turmas</a></li>
-        <li><a href="manageQuestions.html"><i class="zmdi zmdi-assignment-check"></i>Questões</a></li>
+        <li><a href="newQuestion.html"><i class="zmdi zmdi-assignment-check"></i>Nova Questão</a></li>
         <li><a href="#" onclick="logout()"><i class="zmdi zmdi-sign-in"></i>Sair</a></li>
     `);
 }

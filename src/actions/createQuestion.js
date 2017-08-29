@@ -26,6 +26,7 @@ function notifyUsers(question) {
 }
 
 function createQuestion(questionInfo, user) {
+    console.log(JSON.stringify(questionInfo))
     assertTeacher(user);
 
     const saveQuestion = pipe(

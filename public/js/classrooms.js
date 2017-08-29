@@ -13,7 +13,7 @@ function removeStudentDialog(id) {
         cancelButtonText: 'Não'
     }, () => wait300(() => $.ajax({
         method: 'DELETE',
-        url: `api/student/${id}`,
+        url: `api/students/${id}`,
         success: () => successDialog(
             'Removido!',
             'O aluno foi removido com sucesso!'),
@@ -21,7 +21,7 @@ function removeStudentDialog(id) {
     })));
 }
 
-function removeInviteDialog(id) {
+function removeInviteDialog(token) {
     swal({
         title: 'Tem certeza?',
         text: 'O aluno não poderá mais usar esse convite, você poderá convidar de novo se quiser.',
@@ -32,7 +32,7 @@ function removeInviteDialog(id) {
         cancelButtonText: 'Não'
     }, () => wait300(() => $.ajax({
         method: 'DELETE',
-        url: `api/invite/${id}`,
+        url: `api/invites/${token}`,
         success: () => successDialog(
             'Removido!',
             'O convite foi removido com sucesso!'),
@@ -146,7 +146,7 @@ function getInvitedRows(classroom) {
                 <td>${invite.email}</td>
                 <td>${invite.sent}</td>
                 <td>
-                <button onclick="removeInviteDialog('${invite._id}')" class="btn bgm-red waves-effect waves-button waves-float">
+                <button onclick="removeInviteDialog('${invite.token}')" class="btn bgm-red waves-effect waves-button waves-float">
                     <i class="zmdi zmdi-close"></i>
                 </button>
                 </td>

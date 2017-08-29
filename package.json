@@ -7,6 +7,9 @@
     "start": "node index.js",
     "test": "mocha"
   },
+  "engines": {
+    "node": "8.1.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cuchi/cdi-app.git"

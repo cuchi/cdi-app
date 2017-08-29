@@ -248,7 +248,7 @@
                 var answers = [];
                 var correctAnswer = $('input[name=correct-choice]:checked').val();
                 var classrooms = [];
-                var limit = (+$('#limit').val()) * 60 * 60 * 1000;
+                var limit = Number($('#limit').val());
                 var points = +$('#points').val();
                 var positiveFeedback = $('#positive-feedback').val();
                 var negativeFeedback = $('#negative-feedback').val();
@@ -274,11 +274,12 @@
                         points,
                         classrooms
                     }),
-                    contentType: 'application/json'
+                    contentType: 'application/json',
+                    success: () =>
+                        window.location.replace('ranking.html')
                 })
             }
         </script>
-
 
     </body>
 </html>

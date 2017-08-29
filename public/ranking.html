@@ -60,7 +60,7 @@
                                     <th data-column-id="rank" data-type="numeric">Ranking</th>
                                     <th data-column-id="name">Nome</th>
                                     <th data-column-id="score" data-type="numeric">Pontuação</th>
-                                    <th data-column-id="commands" data-formatter="commands" data-sortable="false">Nova pontuação</th>
+                                    <th data-column-id="money" data-type="numeric">Calscalhos</th>
                                 </tr>
                             </thead>
                             <tbody></tbody>
@@ -99,35 +99,25 @@
         <script src="js/utils.js"></script>
 
         <script type="text/javascript">
-            $(document).ready(function () {
-                //Command Buttons
-                $("#data-table-command").bootgrid({
-                    ajax: false,
-                    css: {
-                        icon: 'zmdi icon',
-                        iconColumns: 'zmdi-view-module',
-                        iconDown: 'zmdi-expand-more',
-                        iconRefresh: 'zmdi-refresh',
-                        iconUp: 'zmdi-expand-less'
-                    },
-                    formatters: {
-                        "commands": function (column, row) {
-                            return "<button type=\"button\" class=\"btn btn-icon command-edit waves-effect waves-circle\" data-row-id=\"" + row.id + "\"><span class=\"zmdi zmdi-plus\"></span></button> ";
-                        }
-                    }
-                });
-
+            $(document).ready(() => {
                 populateRanking();
             });
 
             fetchUserInfo();
 
             function populateRanking() {
+                var rank = 1;
                 $.ajax({
                     method: 'GET',
                     url: 'api/ranking',
                     success: students =>
-                        $("#data-table-command").bootgrid('append', students)
+                        $("#data-table-command")
+                            .bootgrid('append', students
+                                .map(s => {
+                                    s.money = Math.floor(s.score / 100);
+                                    s.rank = rank++;
+                                    return s;
+                                }))
                 });
             }
         </script>

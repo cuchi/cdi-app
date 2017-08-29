@@ -15,7 +15,7 @@ function createStudent(studentInfo) {
                 name: studentInfo.name,
                 classroom: invite.classroom
             }).save())
-        .tapCatch(console.log);
+        .then(() => Invite.remove({ token: studentInfo.token }));
 }
 
 module.exports = createStudent;

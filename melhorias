@@ -1,0 +1,37 @@
+
+Fluxo - Professor:
+    Criação de professor - OK
+    Login de professor - OK
+    Criação de turma 
+        Colocar campo para curso ~
+    Convite de alunos
+        Permitir o envio de vários convites ao mesmo tempo
+    Cadastro de aluno
+        Colocar campo para sexo, matrícula e telefone
+        Sexo agora é gênero do avatar
+        Apagar o convite depois do cadastro
+        Colocar Ações para os botões de excluir convites e alunos e incluir pontos
+    Ranking (visão do professor)
+        Mostrar os alunos
+    Cadastro de questão
+        Usar o imgur para as imagens -----
+        Botar de 1 a 5
+        Feedbacks: o professor sugeriu uma imagem, mas por enquanto dá de sugerir
+            para botar links ~
+        Avatares: evoluem a cada 100 pontos
+        Retornar para o ranking após criar a questão
+    
+Fluxo - Alunos:
+    Ranking
+        Mostrar os Avatares
+        Tirar o '+'
+        Adicionar a coluna dos calscalhos, conversão de 100/1 (div inteira)
+        Usar imagens do runescape para as moedas
+    Perfil
+        Sexo agora é gênero do avatar
+    Responder questão
+        Tempo fixo para responder, a partir do momento da criação da questão
+        Usar o alerta para dizer que a questão é nova
+
+Sugestão de nomes:
+    Aprendiz de Newton
